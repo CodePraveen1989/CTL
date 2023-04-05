@@ -1,0 +1,24 @@
+08:43:28:283 [ALWAYS]	GUDE Logging Started
+08:43:28:283 [INFO]	SqliteResumeCache::SqliteResumeCache basedirectory is null/empty
+08:43:28:283 [ERROR]	SqliteResumeCache::CreateSqliteResumeCache creating resume cache pointer failure
+08:43:28:283 [ERROR]	Initialize resume cache pointer failure
+08:43:28:283 [INFO]	gude policy POLICY_USER limit (2,2,1) chunk 2097152, chunking (UL 0 DL 1), resXfer 1, adapt 0, NSURL 0, timeout 86400 
+08:43:28:283 [INFO]	Initialized -- gude-lib version: v0.12.1 app: gude
+08:43:30:934 [WARN]	Ignoring attempt to reinit logging to \gude at level 4 retaining 3 days of logs
+08:43:30:934 [INFO]	SqliteResumeCache::SqliteResumeCache basedirectory is null/empty
+08:43:30:934 [ERROR]	SqliteResumeCache::CreateSqliteResumeCache creating resume cache pointer failure
+08:43:30:935 [ERROR]	Initialize resume cache pointer failure
+08:43:30:935 [INFO]	gude policy POLICY_USER limit (4,4,1) chunk 2097152, chunking (UL 0 DL 1), resXfer 1, adapt 0, NSURL 1, timeout 86400 
+08:43:30:935 [INFO]	Initialized -- gude-lib version: v0.12.1 app: gude
+08:45:28:860 [ALWAYS]	GUDE Logging Started
+08:45:28:860 [INFO]	SqliteResumeCache::SqliteResumeCache basedirectory is null/empty
+08:45:28:860 [ERROR]	SqliteResumeCache::CreateSqliteResumeCache creating resume cache pointer failure
+08:45:28:860 [ERROR]	Initialize resume cache pointer failure
+08:45:28:860 [INFO]	gude policy POLICY_USER limit (2,2,1) chunk 2097152, chunking (UL 0 DL 1), resXfer 1, adapt 0, NSURL 0, timeout 86400 
+08:45:28:860 [INFO]	Initialized -- gude-lib version: v0.12.1 app: gude
+08:45:32:067 [WARN]	Ignoring attempt to reinit logging to \gude at level 4 retaining 3 days of logs
+08:45:32:067 [INFO]	SqliteResumeCache::SqliteResumeCache basedirectory is null/empty
+08:45:32:067 [ERROR]	SqliteResumeCache::CreateSqliteResumeCache creating resume cache pointer failure
+08:45:32:067 [ERROR]	Initialize resume cache pointer failure
+08:45:32:067 [INFO]	gude policy POLICY_USER limit (4,4,1) chunk 2097152, chunking (UL 0 DL 1), resXfer 1, adapt 0, NSURL 1, timeout 86400 
+08:45:32:067 [INFO]	Initialized -- gude-lib version: v0.12.1 app: gude

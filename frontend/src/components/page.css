@@ -1,0 +1,528 @@
+.countdown {
+  font-size: 2rem;
+  color: rgb(253, 72, 72);
+  margin-left: 1rem;
+  font-size: 1.5vw;
+}
+
+.hotded {
+  font-size: 1.5rem;
+}
+
+.img_hovf {
+  overflow: hidden;
+}
+
+.img_hover:hover {
+  scale: 110%;
+  transition: 0.5s;
+}
+
+/* ****************** Header ****************** */
+.loginHide {
+  display: none;
+}
+
+.users_initial {
+  border: 2px solid #1e4881;
+  font-size: 1.5rem;
+  font-weight: 500;
+  border-radius: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #1e4881;
+  text-align: center;
+  background-color: lightgrey;
+}
+
+.hd_bgc {
+  background: white;
+}
+
+.CTL_btn {
+  background-color: #5c8dd1;
+  border: none;
+}
+
+.CTL_btn:hover {
+  background-color: #1e4881;
+  /*   background-image: linear-gradient(#68D4FE, #1E4881); */
+}
+
+.nav_CTL {
+  width: 60%;
+}
+
+.hd_c {
+  color: #1e4881;
+  /*     background-color: #1E4881; */
+}
+
+.hd_c:hover {
+  color: black;
+}
+
+.login {
+  text-align: right;
+  position: absolute;
+  right: 18%;
+  z-index: 99;
+}
+
+.input_search {
+  margin-left: 10%;
+  width: 30%;
+}
+
+#responsive-navbar-nav {
+  padding-top: 1rem;
+}
+
+.w3c_dropdown:hover .users_dropdown {
+  display: block;
+}
+
+.users_dropdown {
+  display: none;
+  position: absolute;
+  /*   margin-left: 15%; */
+  background-color: #f9f9f9;
+  width: 6%;
+  right: 1;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 99;
+  text-align: left;
+}
+
+.users_column > li {
+  margin: 0.3rem;
+}
+
+/* ****** header hexagon ****** */
+.hexagontext {
+  width: 65%;
+  height: 30%;
+  margin-left: 15px;
+}
+.rotate {
+  animation: rotation 8s linear;
+  width: 15%;
+  height: 15%;
+}
+@keyframes rotation {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(350deg);
+  }
+}
+.infinite {
+  animation-iteration-count: infinite;
+}
+.rotate:hover {
+  animation: normal;
+}
+
+/* ****************** Navbar ****************** */
+
+#responsive-navbar-nav {
+  /*     position: absolute;
+    right: 4rem; */
+  /*     margin-top: 4rem; */
+  margin-left: 12rem;
+}
+
+.navb {
+  height: 50%;
+}
+
+.nav_bgc {
+  background: #1e4881;
+}
+
+.nav_c {
+  color: white;
+  font-weight: bold;
+  /*     margin-left:3.4rem */
+}
+
+#basic-navbar-nav {
+  width: 100vw;
+  text-align: center;
+}
+
+.nav_c:hover {
+  color: black;
+}
+
+.nav {
+  margin-bottom: 0;
+}
+
+.dropdown {
+  position: static;
+}
+
+.brand {
+  display: block;
+}
+
+#basic-nav-dropdown {
+  display: block;
+  height: 100%;
+}
+
+.dropdown-menu {
+  width: 80%;
+  margin-left: 10%;
+  text-align: left;
+}
+
+.dropdown-menu > a {
+  display: inline-block;
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-hover:hover > .dropdown-menu {
+  display: inline-block;
+}
+
+.dropdown-hover > .dropdown-toggle:active {
+  /*Without this, clicking will make it sticky*/
+  pointer-events: none;
+}
+
+.NavMDB_dropdown {
+  width: 900%;
+  /*   position: absolute;
+  top: 80%;
+  left: 50px; */
+}
+
+/* Navbar container */
+.w3c_nav {
+  width: 90%;
+  justify-content: space-around;
+}
+
+/* Links inside the navbar */
+.w3c_nav a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 0px 16px;
+  text-decoration: none;
+}
+
+/* The dropdown container */
+.w3c_dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+/* Dropdown button */
+.w3c_dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  /* padding: 0px 16px; */
+  background-color: inherit;
+  font: inherit;
+  /* Important for vertical align on mobile phones */
+  margin: 0;
+  /* Important for vertical align on mobile phones */
+}
+
+/* Add a red background color to navbar links on hover */
+.w3c_nav a:hover,
+.w3c_dropdown:hover .dropbtn {
+  color: black;
+}
+
+/* .w3c_nav {
+  display: grid;
+  grid-template-columns: 3% 9% 6% 13% 15% 13% 13% 12% 16%;
+} */
+
+/* .nav_right {
+  margin-left: 1.2rem;
+} */
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  margin-left: 10%;
+  margin-right: 10%;
+  top: 2rem;
+  width: 80%;
+  height: 100%;
+  background-color: #f9f9f9;
+  left: 0;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 99;
+}
+
+/* Show the dropdown menu on hover FOR BRAND */
+.w3c_dropdown:hover .dropdown-content-brand {
+  display: block;
+}
+
+.dropdown-content-brand {
+  display: none;
+  position: absolute;
+  /*   margin-left: 15%; */
+  background-color: #f9f9f9;
+  width: 14%;
+  top: 2rem;
+  left: 1;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 99;
+}
+
+.dropdown-content-brand a {
+  padding: 4px;
+  text-decoration: none;
+}
+
+
+
+/* brand_img */
+.brand_img {
+  width: 100%;
+}
+
+.img_hvf {
+  overflow: hidden;
+}
+
+.brand_img:hover {
+  scale: 105%;
+}
+
+/* Show the dropdown menu on hover */
+.w3c_dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  background-color: rgb(233, 233, 233);
+  height: auto;
+}
+
+/* Style links inside the columns */
+.column a {
+  float: none;
+  color: #1e4881;
+  padding: 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  padding: 0;
+}
+
+/* Add a background color on hover */
+.childCat a:hover {
+  background-color: #5c8dd1;
+  color: white;
+}
+
+/* .subCat {
+  background-color: #1e4881;
+} */
+
+.subCat a {
+  font-size: large;
+  font-weight: bolder;
+}
+
+.subCat > a:hover {
+  color: #5c8dd1;
+}
+
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* dropdown text color */
+.dropdown-content {
+  color: #1e4881;
+}
+
+.column > li {
+  /*   line-height: 0.1rem; */
+  margin: 0.5rem;
+  list-style-type: none
+}
+
+/* ****** multi level dropdown ****** */
+
+.parent {
+	display: block;
+	position: relative;
+	float: left;
+}
+
+.parent:hover>ul {
+  display: block;
+	position: absolute;
+}
+
+.child a {
+  margin: 10px;
+  text-decoration: none;
+}
+
+.child {
+	display: none;
+  background-color: #dddddd;
+  z-index: 6;
+}
+
+.child li {
+	width: 100%;
+}
+
+.child li a {
+	color: #000000;
+}
+
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0px;
+	min-width: 14em;
+}
+
+ul ul {
+	left: 100%;
+	top: 0;
+	margin-left: 1px;
+}
+
+li:hover {
+	color: white;
+}
+
+.parent li:hover {
+	background-color: #5c8dd1;
+}
+
+.expand {
+	font-size: 12px;
+	float: right;
+  margin-right: 7rem;
+}
+
+
+/* ****************** Footer ****************** */
+
+.ft_bgc {
+  background-color: #091f63;
+}
+
+.frist-col {
+  padding-left: 10%;
+}
+
+/* ****************** Carousel ****************** */
+/* .carousel_ft img{
+    height: 400px;
+} */
+
+.brand_title {
+  /*     display: block;
+    float: right;
+    margin-bottom: 14rem; */
+  color: black;
+}
+
+.brand_detail {
+  /*     display: block;
+    float: right;
+    margin-bottom: 10rem; */
+  color: black;
+}
+
+.carousel-inner > .item {
+  position: relative;
+  max-height: 600px;
+}
+
+.carousel-caption {
+  position: absolute;
+  left: 55%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+aside {
+  text-align: left;
+}
+
+/* *************    Pagination   ************ */
+.page-item > a {
+  color: #1e4881;
+}
+
+.pagination > .active > span {
+  background-color: #5c8dd1 !important;
+  border-color: #5c8dd1 !important;
+}
+
+/* .page-link {
+  background-color: #5c8dd1;
+} */
+
+/* *************    Cart 购物车加减    ************* */
+.btn-group {
+  box-shadow: none;
+}
+.btn-group:hover {
+  box-shadow: none;
+}
+
+.btn_jj {
+  border: none;
+  background-color: transparent;
+}
+
+/* *******************    Home page bottom cards        *********************** */
+/* .diagonal{
+  transform:skewX(10deg);
+  width:20%;
+  
+}
+.content_new{
+  transform:skewX(-10deg);
+  width:80%;
+  margin-left: 10%;
+}
+
+.textover{
+  position: absolute;
+  bottom: 0;
+  background: rgb(18, 36, 87); 
+  background: rgba(221, 231, 245, 0.5); 
+  color: #080808;
+  width: 100%;
+  padding: 20px;
+}
+
+.cardshadow:hover{
+  box-shadow: 0 8px 8px 0 rgba(221, 231, 245, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+} */

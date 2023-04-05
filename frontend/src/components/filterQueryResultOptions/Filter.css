@@ -1,0 +1,79 @@
+.accordion-button {
+    color: #1e4881;
+}
+
+.accordion_container {
+    /* margin-top: 20%; */
+    line-height: 1.5rem;
+}
+
+.accordion-header>a {
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    box-shadow: none;
+    line-height: 1rem;
+
+}
+
+.accordion-header {
+    background-color: #e9e9e9;
+    margin-top: 0.5rem;
+
+}
+
+.accordion-header:hover {
+    background-color: #1e4881;
+    /* background-image: linear-gradient(#68D4FE, #1E4881); */
+    color: white;
+}
+
+.accordion-body {
+    border-top: 2px solid #1e4881;
+}
+
+.subCatFilter {
+    list-style-type: none;
+}
+
+.subCatFilter>a {
+    color: #1e4881;
+    font-size: medium;
+    /* font-weight: bolder; */
+}
+
+.subCatFilter>a:hover {
+    color: #68D4FE;
+}
+
+.activeLabel>a {
+    color: #68D4FE;
+}
+
+.hideit {
+    display: none;
+}
+
+.breadCB {
+    margin-top: 1%;
+    margin-left: 8%;
+}
+
+.breadcrumb {
+margin-bottom: 0;
+}
+
+.active>a {
+    color: #1e4881;
+}
+
+.active {
+    color: #1e4881;
+}
+
+.Highlight {
+    color: gray;    
+    cursor: text;
+    pointer-events: none;
+    opacity: 0.99;
+}
