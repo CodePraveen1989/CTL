@@ -47,6 +47,7 @@
     "react-simple-star-rating": "^5.1.6",
     "react-to-print": "^2.14.11",
     "recharts": "^2.1.16",
+    "redux": "^4.2.1",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.2",
     "tw-elements": "^1.0.0-alpha12",
