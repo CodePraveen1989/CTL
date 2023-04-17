@@ -6,7 +6,7 @@ const pdfValidate = require("../utils/pdfValidate");
 const getProducts = async (req, res, next) => {
   try {
     let query = {};
-    let queryCondition = false; 
+    let queryCondition = false;
     let priceQueryCondition = {};
     // 如果query price存在，就pass小于等于XXX
     if (req.query.price) {
@@ -31,7 +31,7 @@ const getProducts = async (req, res, next) => {
     if (categoryName) {
       queryCondition = true;
       // 用, 去replace所有的/
-      let a = categoryName.replaceAll(",", "/");
+      let a = categoryName.replace(/,/g, "/");
       // for searching，需要 regular expression(正则表达式)，可以从^PPE/XXX开始search 就比较快了
       // 新搞得一个subcategories用的，设置正则表达为null，然后再写入值
       var regEx = null;
@@ -46,13 +46,13 @@ const getProducts = async (req, res, next) => {
       if (fourCategoryName) {
         regEx = new RegExp(
           "^" +
-            a +
-            "/" +
-            subCategoryName +
-            "/" +
-            childCategoryName +
-            "/" +
-            fourCategoryName
+          a +
+          "/" +
+          subCategoryName +
+          "/" +
+          childCategoryName +
+          "/" +
+          fourCategoryName
         );
       } else if (childCategoryName) {
         regEx = new RegExp(
