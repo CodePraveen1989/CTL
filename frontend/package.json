@@ -4,7 +4,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "4": "^0.0.0",
     "@apollo/client": "^3.7.1",
     "@emailjs/browser": "^3.10.0",
     "@emotion/react": "^11.10.5",
@@ -24,7 +23,6 @@
     "bootstrap": "^5.2.2",
     "bootstrap-icons": "^1.9.1",
     "easyinvoice": "^2.3.3",
-    "graphql": "^16.6.0",
     "jquery": "^3.6.3",
     "js-image-zoom": "^0.7.0",
     "jwt-decode": "^3.1.2",
@@ -34,12 +32,12 @@
     "mdbreact": "^5.2.0",
     "nodemailer": "^6.9.1",
     "qs": "^6.11.0",
-    "ra-data-graphql": "^4.8.4",
     "react": "^18.2.0",
     "react-bootstrap": "^2.6.0",
     "react-countdown": "^2.3.3",
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0",
+    "react-image-gallery": "^1.2.11",
     "react-medium-image-zoom": "^5.1.2",
     "react-redux": "^8.0.5",
     "react-responsive-carousel": "^3.2.23",
@@ -49,12 +47,10 @@
     "react-simple-star-rating": "^5.1.6",
     "react-to-print": "^2.14.11",
     "recharts": "^2.1.16",
-    "redux": "^4.2.1",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.2",
     "tw-elements": "^1.0.0-alpha12",
-    "web-vitals": "^2.1.4",
-    "webpack": "^4.29.6"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,198 +1,766 @@
-import React from 'react';
+import React from "react";
 
-import { Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
-
+import {
+    Page,
+    Text,
+    View,
+    Document,
+    StyleSheet,
+    Image,
+} from "@react-pdf/renderer";
 
 const DeliveryNotePrint = (cartItems) => {
-
     const styles = StyleSheet.create({
         page: {
-            padding: 50,
-            paddingTop: 70,
+            padding: 5,
+            paddingTop: 0,
+            position: "relative",
         },
         container: {
-            display: 'flex',
-            flexDirection: 'row',
-            width: '90%',
-            marginBottom: 5
+            display: "flex",
+            flexDirection: "row",
+            width: "90%",
+            marginBottom: 5,
         },
         image: {
             position: "absolute",
-            top: 10,
+            top: 5,
             width: "100%",
         },
+
         table: {
-            padding: 50,
+            paddingLeft: 50,
+            paddingRight: 50,
             paddingTop: 10,
             display: "table",
-            width: "90%",
+            width: "95%",
             borderStyle: "solid",
             borderWidth: 0,
-            borderRightWidth: 0,
-            borderBottomWidth: 0
+        },
+        tableItem: {
+            paddingLeft: 50,
+            paddingBottom: 5,
+            display: "table",
+            width: "95%",
+            borderStyle: "solid",
+            borderWidth: 0,
+        },
+
+
+        tableItemChunk: {
+            paddingLeft: 50,
+            paddingBottom: 5,
+            paddingTop: 30,
+            display: "table",
+            width: "95%",
+            borderStyle: "solid",
+            borderWidth: 0,
+        },
+
+        tableBorder: {
+            display: "table",
+            width: "100%",
+            borderStyle: "solid",
+            borderWidth: 1,
+            borderTop: 0,
+            borderRight: 0,
+        },
+        tableBorderBottom: {
+            flexDirection: "row",
+            display: "table",
+            width: "40%",
+            borderStyle: "solid",
+            borderWidth: 1,
+            marginLeft: "55%",
         },
         tableRow: {
             margin: "auto",
-            flexDirection: "row"
+            flexDirection: "row",
+            height: "auto",
+            width: "100%",
         },
-        tableCol: {
-            width: "25%",
-            borderStyle: "solid",
-            borderWidth: 0,
-            borderLeftWidth: 0,
-            borderTopWidth: 0,
-        },
-        tableCell: {
+        tableRow1: {
             margin: "auto",
-            marginTop: 5,
-            fontSize: 10
+            flexDirection: "row",
+            height: "auto",
+            backgroundColor: "#D4CACA",
+            width: "100%",
+            borderBottomWidth: 1,
+            borderTopWidth: 1,
         },
-        tableCol2: {
-            width: "50%",
+        tableRow2: {
+            flexDirection: "row",
+            height: "auto",
+            width: "100%",
+            borderBottomWidth: 1,
+        },
+        tableRowProducts: {
+            flexDirection: "row",
+            height: "30px",
+            width: "100%",
+        },
+        tableOrder: {
+            padding: 10,
+            marginLeft: 30,
+            display: "table",
+            width: "90%",
             borderStyle: "solid",
+            borderWidth: 1,
+        },
+        tableColHeader: {
+            width: "33.33%",
+            borderStyle: "solid",
+            marginTop: 5,
             borderWidth: 0,
             borderLeftWidth: 0,
             borderTopWidth: 0,
             fontSize: 15,
         },
-        tableCell2: {
-            paddingLeft: 5,
-            marginTop: 5,
-            fontSize: 12,
-        },
-        tableCol3: {
-            width: "60%",
+        tableColHeaderSide: {
+            float: "left",
+            width: "25%",
             borderStyle: "solid",
-            marginTop: 10,
+            borderRightWidth: 1,
+            fontSize: 15,
+            fontWeight: "bold",
+            paddingLeft: 5,
+        },
+        tableColHeaderCenter: {
+            float: "left",
+            width: "50%",
+            borderStyle: "solid",
+            borderRightWidth: 1,
+            fontSize: 15,
+            fontWeight: "bold",
+            paddingLeft: 0,
+        },
+        tableColHeaderShort: {
+            float: "left",
+            width: "15%",
+            borderStyle: "solid",
+            borderRightWidth: 1,
+            fontSize: 15,
+            fontWeight: "bold",
+            paddingLeft: 0,
+        },
+        tableColHeaderMedium: {
+            float: "left",
+            width: "15%",
+            borderStyle: "solid",
+            borderRightWidth: 1,
+            fontSize: 15,
+            fontWeight: "bold",
+            paddingLeft: 0,
+        },
+
+        tableColImageHeader: {
+            width: "50%",
+            height: "80px",
+            borderStyle: "solid",
+            marginTop: 5,
+            marginRight: 10,
+            paddingRight: 10,
             borderWidth: 0,
             borderLeftWidth: 0,
             borderTopWidth: 0,
-            fontSize: 25,
+            fontSize: 20,
         },
-        tableCell3: {
+
+        tableColBill: {
+            width: "50%",
+            borderStyle: "solid",
+            borderWidth: 0,
+            borderLeftWidth: 0,
+            borderTopWidth: 0,
+            fontSize: 10,
+        },
+        tableColBillItem: {
+            borderStyle: "solid",
+            borderWidth: 0,
+            borderLeftWidth: 0,
+            borderTopWidth: 0,
+            fontSize: 10,
+            textAlign: "center",
+            paddingTop: 5,
+        },
+
+        tableCellHeader: {
+            width: "33%",
             paddingLeft: 5,
-            marginBottom: 25,
-            marginTop: 5,
-            fontSize: 12,
+            fontSize: 10,
+            borderRight: 1,
         },
+        tableCellHeaderLeft: {
+            width: "67%",
+            paddingLeft: 5,
+            fontSize: 10,
+            borderRight: 1,
+        },
+        tableCellBill: {
+            paddingLeft: 5,
+            marginTop: 0,
+            fontSize: 10,
+        },
+        tableCellBillBox: {
+            paddingLeft: 5,
+            marginTop: 5,
+            fontSize: 10,
+            height: "15px",
+        },
+        tableColOrderName: {
+            width: "40%",
+            borderStyle: "solid",
+            borderWidth: 0,
+            borderLeftWidth: 0,
+            borderTopWidth: 0,
+        },
+        tableColOrder: {
+            width: "20%",
+            borderStyle: "solid",
+            borderBottomWidth: 1,
+        },
+        tableCellOrderName: {
+            margin: "auto",
+            marginTop: 5,
+            fontSize: 10,
+        },
+        tableCellOrder: {
+            margin: "auto",
+            marginTop: 5,
+            fontSize: 10,
+        },
+        tableCell7day: {
+            margin: 5,
+            justifyContent: "right",
+        },
+        pagesNumberDisplay: {
+            position: "absolute",
+            bottom: 5,
+            paddingLeft: "70%",
+            fontSize: 10,
+        },
+
     });
 
+    const DelCartItems = cartItems.cartItems;
+    const DelUserInfo = cartItems.userInfo;
+    const DelAddress = cartItems.userAddress;
 
-    // 下面console.log('Invoice cartItems', cartItems, typeof cartItems);
-    // 发现 返回的也是object，但是cartItems里面套了一个cartItems， 所以用InvCartItems解析一下，然后再map
-    // 好奇怪，目前为止，userinfo he userAddress 都在 cartItems 被传过来了，所以 cartItems 其实是个合集，并不是仅仅一个array
-    // 或者可以直接，用cartItems.XXXX 直接写到 {cartItems.XXXX}
-    const DelCartItems = cartItems.cartItems
-    const DelUserInfo = cartItems.userInfo
-    const DelAddress = cartItems.userAddress
+    console.log("Invoice cartItems", cartItems, typeof cartItems);
 
+    function splitArrayIntoChunks(arr, chunkSize) {
+        const result = [];
+        for (let i = 0; i < arr.length; i += chunkSize) {
+            result.push(arr.slice(i, i + chunkSize));
+        }
+        return result;
+    }
 
+    function splitCartItems(DelCartItems) {
+        const firstChunk = DelCartItems.slice(0, 9);
+        const remainingItems = DelCartItems.slice(9);
+        const chunks = splitArrayIntoChunks(remainingItems, 16);
+        return [firstChunk, ...chunks];
+    }
 
-
-
-    console.log('DeliveryNote cartItems', cartItems, typeof cartItems);
-
+    const [firstItems, ...otherChunks] = splitCartItems(DelCartItems);
 
     return (
         <>
             <Document id={cartItems.invoiceNumber}>
-                <Page style={styles.body}>
-
-
+                <Page style={styles.page} size="A4" orientation="landscape">
+                    {/* ******* header ******* */}
                     <View style={styles.table}>
                         <View style={styles.tableRow}>
-                            <View style={styles.tableCol3}>
-                                <Text style={styles.tableCol3}>Delivery Note #:</Text>
+                            <View style={styles.tableColImageHeader}>
+                                <Image
+                                    style={styles.image}
+                                    src="https://res.cloudinary.com/dj2n5c46v/image/upload/v1678324503/CTL-blueDelivering_ssffjd.png"
+                                />
                             </View>
-                            <View style={styles.tableCol2}>
-                                <Image style={styles.image} src="https://res.cloudinary.com/dj2n5c46v/image/upload/v1675441255/CTL_jmb9kp.png" />
+                            <View style={styles.tableColHeader}>
+                                <Text style={styles.tableCellBill}>Perth</Text>
+                                <Text style={styles.tableCellBill}>T : 0475448299</Text>
+                                <Text style={styles.tableCellBill}>
+                                    E : sales@ctlservices.com.au
+                                </Text>
+                                <Text style={styles.tableCellBill}>
+                                    W : ctlaustralia.com.au
+                                </Text>
+                            </View>
+                            <View style={styles.tableColHeader}>
+                                <Text style={styles.tableCellBill}>Perth</Text>
+                                <Text style={styles.tableCellBill}>T : 0475448299</Text>
+                                <Text style={styles.tableCellBill}>
+                                    E : sales@ctlservices.com.au
+                                </Text>
+                                <Text style={styles.tableCellBill}>
+                                    W : ctlaustralia.com.au
+                                </Text>
                             </View>
                         </View>
-
 
                         <View style={styles.tableRow}>
-                            <View style={styles.tableCol3}>
-                                <Text style={styles.tableCell3}>{cartItems.invoiceNumber} </Text>
-                                <Text style={styles.tableCell3}>SLR PO #: {" "}{ cartItems.purchaseNumber}</Text>
+                            <View style={styles.tableColHeader}>
+                                <Text>INVOICE #:</Text>
                             </View>
-                            <View style={styles.tableCol3}>
+                            <View style={styles.tableColHeader}>
+                                <Text>{cartItems.invoiceNumber} </Text>
                             </View>
-
-                        </View>
-
-                        <View style={styles.tableRow}>
-                            <View style={styles.tableCol2}>
-                                <Text style={styles.tableCol2}>Delivery to:</Text>
-                            </View>
-                            <View style={styles.tableCol2}>
-                                <Text style={styles.tableCol2}>Payable to:</Text>
+                            <View style={styles.tableColHeader}>
+                                <Text>SLR PO #: {cartItems.purchaseNumber}</Text>
                             </View>
                         </View>
-
-                        <View style={styles.tableRow}>
-                            <View style={styles.tableCol2}>
-                                <Text style={styles.tableCell2}>Customer Name</Text>
-                                <Text style={styles.tableCell2}>location</Text>
-                                <Text style={styles.tableCell2}>phone</Text>
-                                <Text style={styles.tableCell2}>location Customer</Text>
-                            </View>
-                            <View style={styles.tableCol2}>
-                                <Text style={styles.tableCell2}>Josh Collions</Text>
-                                <Text style={styles.tableCell2}>CTL</Text>
-                                <Text style={styles.tableCell2}>30 XXXX STREET, PERTH</Text>
-                                <Text style={styles.tableCell2}>ABN:XXXXXX</Text>
-                            </View>
-                        </View>
-
                     </View>
-                    <View style={styles.table}>
-                        <View style={styles.tableRow}>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>Product</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>Quantity</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>Price</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>Total</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>Checked</Text>
-                            </View>
-                            
-                        </View>
-                        {
-                            DelCartItems.map((item, idx) => {
-                                return (
-                                    <View style={styles.tableRow} key={idx}>
-                                        <View style={styles.tableCol}>
-                                            <Text style={styles.tableCell}>{item.name}</Text>
+                    {/* ******* header ******* */}
+                    <View style={styles.tableItem}>
+                        <View style={styles.tableBorder}>
+                            <View style={styles.tableRow1}>
+                                <View style={styles.tableColHeaderSide}>
+                                    <Text style={styles.tableColBill}>Bill to:</Text>
+                                </View>
+                                <View style={styles.tableColHeaderCenter}>
+                                    <View style={styles.tableRow}>
+                                        <View style={styles.tableCellHeaderLeft}>
+                                            <Text>Despatch From: To:</Text>
                                         </View>
-                                        <View style={styles.tableCol}>
-                                            <Text style={styles.tableCell}>{item.quantity}</Text>
+                                        <View style={styles.tableCellHeader}>
+                                            <Text>Page #</Text>
                                         </View>
-                                        <View style={styles.tableCol}>
-                                            <Text style={styles.tableCell}>$ {item.price}</Text>
-                                        </View>
-                                        <View style={styles.tableCol}>
-                                            <Text style={styles.tableCell}>$ {(item.price * item.quantity)}</Text>
-                                        </View>
-                                        <View style={styles.tableCol}>
-                                            <Text style={styles.tableCell}>口</Text>
-                                        </View>                                       
                                     </View>
-                                )
-                            })
-                        }
-                    </View>
+                                </View>
+                                <View style={styles.tableColHeaderSide}>
+                                    <Text style={styles.tableColBill}>Payable to:</Text>
+                                </View>
+                            </View>
 
-                    <View style={styles.tableCol}>
-                        <Text style={styles.tableCell}>Due Amount: $ {cartItems.cartSubtotal}</Text>
+                            <View style={styles.tableRow}>
+                                <View style={styles.tableColHeaderSide}>
+                                    <Text style={styles.tableCellBill}>
+                                        {DelUserInfo.name} {DelUserInfo.lastName}{" "}
+                                    </Text>
+                                    <Text style={styles.tableCellBill}>
+                                        {DelAddress.location}{" "}
+                                    </Text>
+                                    <Text style={styles.tableCellBill}>{DelAddress.phone}</Text>
+                                    <Text style={styles.tableCellBill}>
+                                        {DelAddress.city} {DelAddress.state} {DelAddress.postCode}
+                                    </Text>
+                                </View>
+                                <View style={styles.tableColHeaderCenter}>
+                                    <View style={styles.tableRow2}>
+                                        <View style={styles.tableCellHeaderLeft}>
+                                            <View style={styles.tableCellBillBox}>
+                                                <Text>Perth</Text>
+                                            </View>
+                                        </View>
+                                        <View style={styles.tableCellHeader}>
+                                            <View style={styles.tableCellBillBox}>
+                                                <Text
+                                                    render={({ totalPages }) =>
+                                                        `${totalPages}`
+                                                    }
+                                                ></Text>
+                                            </View>
+                                        </View>
+                                    </View>
+                                </View>
+                                <View style={styles.tableColHeaderSide}>
+                                    <Text style={styles.tableCellBill}>Josh Collions</Text>
+                                    <Text style={styles.tableCellBill}>CTL</Text>
+                                    <Text style={styles.tableCellBill}>
+                                        30 XXXX STREET, PERTH
+                                    </Text>
+                                    <Text style={styles.tableCellBill}>ABN:XXXXXX</Text>
+                                </View>
+                            </View>
+
+                            <View style={styles.tableRow}>
+                                <View style={styles.tableColHeaderSide}></View>
+                                <View style={styles.tableColHeaderCenter}>
+                                    <View style={styles.tableRow1}>
+                                        <View style={styles.tableCellHeaderLeft}>
+                                            <Text>Invoice Date</Text>
+                                        </View>
+                                        <View style={styles.tableCellHeaderLeft}>
+                                            <Text>Invoice Number</Text>
+                                        </View>
+                                        <View style={styles.tableCellHeader}>
+                                            <Text>Sales Order No.</Text>
+                                        </View>
+                                    </View>
+                                </View>
+                                <View style={styles.tableColHeaderSide}></View>
+                            </View>
+
+                            <View style={styles.tableRow}>
+                                <View style={styles.tableColHeaderSide}></View>
+                                <View style={styles.tableColHeaderCenter}>
+                                    <View style={styles.tableRow2}>
+                                        <View style={styles.tableCellHeaderLeft}>
+                                            <View style={styles.tableCellBillBox}>
+                                                <Text>{cartItems.invoiceDate.split("T")[0]}</Text>
+                                            </View>
+                                        </View>
+                                        <View style={styles.tableCellHeaderLeft}>
+                                            <View style={styles.tableCellBillBox}>
+                                                <Text>{cartItems.invoiceNumber}</Text>
+                                            </View>
+                                        </View>
+                                        <View style={styles.tableCellHeader}>
+                                            <View style={styles.tableCellBillBox}>
+                                                <Text></Text>
+                                            </View>
+                                        </View>
+                                    </View>
+                                </View>
+                                <View style={styles.tableColHeaderSide}></View>
+                            </View>
+
+                            <View style={styles.tableRow1}>
+                                <View style={styles.tableCellHeader}>
+                                    <Text style={styles.tableColBill}>Account</Text>
+                                </View>
+                                <View style={styles.tableCellHeader}>
+                                    <Text style={styles.tableColBill}>Delivery Date</Text>
+                                </View>
+                                <View style={styles.tableCellHeader}>
+                                    <Text style={styles.tableColBill}>Purchase Order No. </Text>
+                                </View>
+                                <View style={styles.tableCellHeader}>
+                                    <Text style={styles.tableColBill}>Carrier</Text>
+                                </View>
+                            </View>
+
+                            <View style={styles.tableRow}>
+                                <View style={styles.tableColHeaderSide}>
+                                    <Text style={styles.tableCellBillBox}>CTLAUS</Text>
+                                </View>
+                                <View style={styles.tableColHeaderSide}>
+                                    <Text style={styles.tableCellBillBox}>
+                                        {cartItems.invoiceDate.split("T")[0]}
+                                    </Text>
+                                </View>
+                                <View style={styles.tableColHeaderSide}>
+                                    <Text style={styles.tableCellBillBox}>
+                                        {cartItems.purchaseNumber}
+                                    </Text>
+                                </View>
+                                <View style={styles.tableColHeaderSide}>
+                                    <Text style={styles.tableCellBillBox}>6062</Text>
+                                </View>
+                            </View>
+                        </View>
                     </View>
+                    {/* ******* Product List (first page) ******* */}
+                    <View style={styles.tableItem}>
+                        <View style={styles.tableBorder}>
+                            <View style={styles.tableRow1}>
+                                <View style={styles.tableColHeaderShort}>
+                                    <Text style={styles.tableColBillItem}>Item Code</Text>
+                                </View>
+                                <View style={styles.tableColHeaderCenter}>
+                                    <Text style={styles.tableColBillItem}>Item Description</Text>
+                                </View>
+                                <View style={styles.tableColHeaderShort}>
+                                    <Text style={styles.tableColBillItem}>Qty Order</Text>
+                                </View>
+                                <View style={styles.tableColHeaderShort}>
+                                    <Text style={styles.tableColBillItem}>Qty Supply</Text>
+                                </View>
+                                <View style={styles.tableColHeaderShort}>
+                                    <Text style={styles.tableColBillItem}>Qty Back Order</Text>
+                                </View>
+                                {/* <View style={styles.tableColHeaderShort}>
+                                    <Text style={styles.tableColBillItem}>Unit Price</Text>
+                                </View>
+                                <View style={styles.tableColHeaderShort}>
+                                    <Text style={styles.tableColBillItem}>Net Amount</Text>
+                                </View>
+                                <View style={styles.tableColHeaderShort}>
+                                    <Text style={styles.tableColBillItem}>GST</Text>
+                                </View>
+                                <View style={styles.tableColHeaderSide}>
+                                    <Text style={styles.tableColBillItem}>Total Inc. GST</Text>
+                                </View> */}
+                            </View>
+                            {firstItems.map((item, idx) => {
+                                return (
+                                    <View style={styles.tableRowProducts} key={idx}>
+                                        <View style={styles.tableColHeaderShort}>
+                                            <Text style={styles.tableColBillItem}>{item.cartProducts[0].ctlsku}</Text>
+                                        </View>
+                                        <View style={styles.tableColHeaderCenter}>
+                                            <Text style={styles.tableColBillItem}>{item.name}</Text>
+                                        </View>
+                                        <View style={styles.tableColHeaderShort}>
+                                            <Text style={styles.tableColBillItem}>
+                                                {item.cartProducts[0].quantity}
+                                            </Text>
+                                        </View>
+                                        <View style={styles.tableColHeaderShort}>
+                                            <Text style={styles.tableColBillItem}>
+                                                {item.cartProducts[0].quantity}
+                                            </Text>
+                                        </View>
+                                        <View style={styles.tableColHeaderShort}>
+                                            <Text style={styles.tableColBillItem}>
+
+                                            </Text>
+                                        </View>
+                                        {/* <View style={styles.tableColHeaderShort}>
+                                            <Text style={styles.tableColBillItem}>
+                                                $ {item.price.toLocaleString()}
+                                            </Text>
+                                        </View>
+                                        <View style={styles.tableColHeaderShort}>
+                                            <Text style={styles.tableColBillItem}>
+                                                $ {(item.price * item.quantity).toLocaleString()}
+                                            </Text>
+                                        </View>
+                                        <View style={styles.tableColHeaderShort}>
+                                            <Text style={styles.tableColBillItem}>
+                                                ${" "}
+                                                {(
+                                                    (item.price * item.quantity * 10) /
+                                                    100
+                                                ).toLocaleString()}
+                                            </Text>
+                                        </View>
+                                        <View style={styles.tableColHeaderSide}>
+                                            <Text style={styles.tableColBillItem}>
+                                                ${" "}
+                                                {(
+                                                    item.price * item.quantity +
+                                                    (item.price * item.quantity * 15) / 100
+                                                ).toLocaleString()}
+                                            </Text>
+                                        </View> */}
+                                    </View>
+                                );
+                            })}
+                        </View>
+                    </View>
+                    {/* ******* Page number ******* */}
+                    {otherChunks[0] ? (<View style={styles.pagesNumberDisplay}>
+                        <Text
+                            render={({ pageNumber, totalPages }) =>
+                                `${pageNumber} / ${totalPages}`
+                            }
+                        />
+                    </View>) : ("")}
+
+                    {/* bottom total price */}
+                    {otherChunks[0] ? (
+                        ""
+                    ) : (
+                        <>
+                            {/* {" "}
+                            <View style={styles.tableBorderBottom}>
+                                <View style={styles.tableCellHeaderLeft}>
+                                    <Text style={styles.tableCellBillBox}>
+                                        Inv. Amount Excl. Tax
+                                    </Text>
+                                </View>
+                                <View style={styles.tableCellHeader}>
+                                    <Text style={styles.tableCellBillBox}>
+                                        $ {cartItems.cartSubtotal.toLocaleString()}
+                                    </Text>
+                                </View>
+                            </View>
+                            <View style={styles.tableBorderBottom}>
+                                <View style={styles.tableCellHeaderLeft}>
+                                    <Text style={styles.tableCellBillBox}>Total GST</Text>
+                                </View>
+                                <View style={styles.tableCellHeader}>
+                                    <Text style={styles.tableCellBillBox}>
+                                        $ {(cartItems.cartSubtotal * 0.1).toLocaleString()}
+                                    </Text>
+                                </View>
+                            </View>
+                            <View style={styles.tableBorderBottom}>
+                                <View style={styles.tableCellHeaderLeft}>
+                                    <Text style={styles.tableCellBillBox}>Invoice Amount</Text>
+                                </View>
+                                <View style={styles.tableCellHeader}>
+                                    <Text style={styles.tableCellBillBox}>
+                                        ${" "}
+                                        {(
+                                            cartItems.cartSubtotal * 0.1 +
+                                            cartItems.cartSubtotal
+                                        ).toLocaleString()}
+                                    </Text>
+                                </View>
+                            </View>
+                            <View style={styles.pagesNumberDisplay}>
+                                <Text
+                                    render={({ pageNumber, totalPages }) =>
+                                        `${pageNumber} / ${totalPages}`
+                                    }
+                                />
+                            </View> */}
+                        </>
+                    )}
                 </Page>
+
+
+                {/* ******* Product List (other pages) ******* */}
+                {otherChunks.map((chunk, index) => (
+                    <React.Fragment key={index}>
+                        {chunk.length > 0 && (
+                            <Page style={styles.page} size="A4" orientation="landscape">
+                                <View style={styles.tableItemChunk}>
+                                    <View style={styles.tableBorder}>
+                                        <View style={styles.tableRow1}>
+                                            <View style={styles.tableColHeaderShort}>
+                                                <Text style={styles.tableColBillItem}>Item Code</Text>
+                                            </View>
+                                            <View style={styles.tableColHeaderCenter}>
+                                                <Text style={styles.tableColBillItem}>
+                                                    Item Description
+                                                </Text>
+                                            </View>
+                                            <View style={styles.tableColHeaderShort}>
+                                                <Text style={styles.tableColBillItem}>Qty Order</Text>
+                                            </View>
+                                            <View style={styles.tableColHeaderShort}>
+                                                <Text style={styles.tableColBillItem}>Qty Supply</Text>
+                                            </View>
+                                            <View style={styles.tableColHeaderShort}>
+                                                <Text style={styles.tableColBillItem}>Qty Back Order</Text>
+                                            </View>
+                                            {/* <View style={styles.tableColHeaderShort}>
+                                                <Text style={styles.tableColBillItem}>Unit Price</Text>
+                                            </View>
+                                            <View style={styles.tableColHeaderShort}>
+                                                <Text style={styles.tableColBillItem}>Net Amount</Text>
+                                            </View>
+                                            <View style={styles.tableColHeaderShort}>
+                                                <Text style={styles.tableColBillItem}>GST</Text>
+                                            </View>
+                                            <View style={styles.tableColHeaderSide}>
+                                                <Text style={styles.tableColBillItem}>
+                                                    Total Inc. GST
+                                                </Text>
+                                            </View> */}
+                                        </View>
+                                        {chunk.map((item, idx) => {
+                                            return (
+                                                <View style={styles.tableRowProducts} key={idx}>
+                                                    <View style={styles.tableColHeaderShort}>
+                                                        <Text style={styles.tableColBillItem}>
+                                                            {item.cartProducts[0].ctlsku}
+                                                        </Text>
+                                                    </View>
+                                                    <View style={styles.tableColHeaderCenter}>
+                                                        <Text style={styles.tableColBillItem}>
+                                                            {item.name}
+                                                        </Text>
+                                                    </View>
+                                                    <View style={styles.tableColHeaderShort}>
+                                                        <Text style={styles.tableColBillItem}>
+                                                            {item.cartProducts[0].quantity}
+                                                        </Text>
+                                                    </View>
+                                                    <View style={styles.tableColHeaderShort}>
+                                                        <Text style={styles.tableColBillItem}>
+                                                            {item.cartProducts[0].quantity}
+                                                        </Text>
+                                                    </View>
+                                                    <View style={styles.tableColHeaderShort}>
+                                                        <Text style={styles.tableColBillItem}>
+
+                                                        </Text>
+                                                    </View>
+                                                    {/* <View style={styles.tableColHeaderShort}>
+                                                        <Text style={styles.tableColBillItem}>
+                                                            $ {item.price.toLocaleString()}
+                                                        </Text>
+                                                    </View>
+                                                    <View style={styles.tableColHeaderShort}>
+                                                        <Text style={styles.tableColBillItem}>
+                                                            $ {(item.price * item.quantity).toLocaleString()}
+                                                        </Text>
+                                                    </View>
+                                                    <View style={styles.tableColHeaderShort}>
+                                                        <Text style={styles.tableColBillItem}>
+                                                            ${" "}
+                                                            {(
+                                                                (item.price * item.quantity * 10) /
+                                                                100
+                                                            ).toLocaleString()}
+                                                        </Text>
+                                                    </View>
+                                                    <View style={styles.tableColHeaderSide}>
+                                                        <Text style={styles.tableColBillItem}>
+                                                            ${" "}
+                                                            {(
+                                                                item.price * item.quantity +
+                                                                (item.price * item.quantity * 15) / 100
+                                                            ).toLocaleString()}
+                                                        </Text>
+                                                    </View> */}
+                                                </View>
+                                            );
+                                        })}
+                                    </View>
+                                </View>
+
+                                {/* show total price in last page */}
+                                {index === otherChunks.length - 1 && (
+                                    <>
+                                        {/* <View style={styles.tableBorderBottom}>
+                                            <View style={styles.tableCellHeaderLeft}>
+                                                <Text style={styles.tableCellBillBox}>
+                                                    Inv. Amount Excl. Tax
+                                                </Text>
+                                            </View>
+                                            <View style={styles.tableCellHeader}>
+                                                <Text style={styles.tableCellBillBox}>
+                                                    $ {cartItems.cartSubtotal.toLocaleString()}
+                                                </Text>
+                                            </View>
+                                        </View>
+                                        <View style={styles.tableBorderBottom}>
+                                            <View style={styles.tableCellHeaderLeft}>
+                                                <Text style={styles.tableCellBillBox}>Total GST</Text>
+                                            </View>
+                                            <View style={styles.tableCellHeader}>
+                                                <Text style={styles.tableCellBillBox}>
+                                                    $ {(cartItems.cartSubtotal * 0.1).toLocaleString()}
+                                                </Text>
+                                            </View>
+                                        </View>
+                                        <View style={styles.tableBorderBottom}>
+                                            <View style={styles.tableCellHeaderLeft}>
+                                                <Text style={styles.tableCellBillBox}>
+                                                    Invoice Amount
+                                                </Text>
+                                            </View>
+                                            <View style={styles.tableCellHeader}>
+                                                <Text style={styles.tableCellBillBox}>
+                                                    ${" "}
+                                                    {(
+                                                        cartItems.cartSubtotal * 0.1 +
+                                                        cartItems.cartSubtotal
+                                                    ).toLocaleString()}
+                                                </Text>
+                                            </View>
+                                        </View> */}
+                                    </>
+                                )}
+                                <View style={styles.pagesNumberDisplay}>
+                                    <Text
+                                        render={({ pageNumber, totalPages }) =>
+                                            `${pageNumber} / ${totalPages}`
+                                        }
+                                    />
+                                </View>
+                            </Page>
+
+                        )}
+                    </React.Fragment>
+                ))}
             </Document>
         </>
     );

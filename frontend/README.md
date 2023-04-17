@@ -132,4 +132,20 @@ export default ProductListPage;
       console.log('xxx:',regEx);
       categoryQueryCondition = { category: regEx };
     }
-    ```
+```
+
+# deploy to render.
+1. frontend -> package.json -> remove proxy:  "proxy": "http://localhost:5000"
+
+2. backend -> create .gitignore -> enter .env
+
+3. for older Node versions (<15), need to remove replaceAll function. render.com by default uses older one.
+
+4. new web service -> connect GitHub -> backend   ./backend   npm install   node server.js => click advance -> add environment variable (use env file)  => create
+
+5. after it done, open backend url and put /api/products to test.
+
+6. go back to dashboard -> click NEW + -> static site -> connect -> front end      ./frontend    npm run build    build  => create  (should install webpack-4 and redux in local then upload package.json to github)
+
+7. Redirects/Rewrites 
+

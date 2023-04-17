@@ -32,6 +32,8 @@ import UserCartDetailsPage from "./pages/user/UserCartDetailsPage";
 import UserOrderDetailsPage from "./pages/user/UserOrderDetailsPage";
 import UserPasswordPage from "./pages/user/UserPasswordPage";
 
+import EmailVerify from "./components/user/EmailVerify";
+
 // protected admin pages:
 import AdminUsersPage from "./pages/admin/AdminUsersPage";
 import AdminProductsPage from "./pages/admin/AdminProductsPage";
@@ -48,114 +50,83 @@ import HeaderComponent from "./components/HeaderComponent";
 import Navb from "./components/Navb";
 import FooterComponent from "./components/FooterComponent";
 
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  createHttpLink,
-} from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
-// Construct our main GraphQL API endpoint
-const httpLink = createHttpLink({
-  uri: "/graphql",
-});
-
-// Construct request middleware that will attach the JWT token to every request as an `authorization` header
-const authLink = setContext((_, { headers }) => {
-  // get the authentication token from local storage if it exists
-  const token = localStorage.getItem("id_token");
-  // return the headers to the context so httpLink can read them
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : "",
-    },
-  };
-});
-
-const client = new ApolloClient({
-  // Set up our client to execute the `authLink` middleware prior to making the request to our GraphQL API
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
-});
-
 function App() {
   return (
     <>
-      <ApolloProvider client={client}>
-        <Router>
-          <ScrollToTop />
+      <Router>
+        <ScrollToTop />
 
-          {/* V6里面 routes 替换了 switch，而且 route可以套route，login和unfor单独render，header ft navb 放在ProtectedRoutesComponent里渲染了 */}
-          <Routes>
-            <Route path="/unfortunately" element={<Unfortunately />} />
-            <Route path="/login" element={<SplashPage />} />
-            {/* publicly available routes:
-            {/* header footer navbar are in ProtectedRoutesComponent */}
-            <Route element={<ProtectedRoutesComponent admin={false} />}>
-              <Route path="/" element={<HomePage />} />
-              {/* <Route path="/login" element={<LoginPage />} /> */}
+        {/* V6里面 routes 替换了 switch，而且 route可以套route，login和unfor单独render，header ft navb 放在ProtectedRoutesComponent里渲染了 */}
+        <Routes>
+          <Route path="/unfortunately" element={<Unfortunately />} />
+          <Route path="/login" element={<SplashPage />} />
+          <Route path="/user/:id/verify/:token" element={<EmailVerify />} />
 
-              <Route path="/register" element={<RegisterPage />} />
-              <Route path="/product-list" element={<ProductListPage />} />
-              <Route
-                path="/product-details/:id"
-                element={<ProductDetailsPage />}
-              />
-              <Route path="/cart" element={<CartPage />} />
-              <Route path="/FaqPage" element={<FaqPage />} />
-              <Route path="/TermsConditions" element={<TermsConditions />} />
-              <Route path="/privacypolicy" element={<PrivacyPolicy />} />
-              <Route path="/callbackservice" element={<CallbackService />} />
+          {/* publicly available routes: */}
+          {/* header footer navbar are in ProtectedRoutesComponent */}
+          <Route element={<ProtectedRoutesComponent admin={false} />}>
+            <Route path="/" element={<HomePage />} />
+            {/* <Route path="/login" element={<LoginPage />} /> */}
 
-              <Route path="*" element="Page not exists 404" />
-            </Route>
-            {/* user protected routes: */}
-            <Route element={<ProtectedRoutesComponent admin={false} />}>
-              <Route path="/user" element={<UserProfilePage />} />
-              <Route path="/user/password" element={<UserPasswordPage />} />
-              <Route path="/user/my-orders" element={<UserOrdersPage />} />
-              <Route
-                path="/user/cart-details"
-                element={<UserCartDetailsPage />}
-              />
-              <Route
-                path="/user/order-details/:id"
-                element={<UserOrderDetailsPage />}
-              />
-            </Route>
-
-            {/* admin protected routes: */}
-
-            <Route element={<ProtectedRoutesComponent admin={true} />}>
-              <Route path="/admin/users" element={<AdminUsersPage />} />
-              <Route
-                path="/admin/edit-user/:id"
-                element={<AdminEditUserPage />}
-              />
-              <Route path="/admin/products" element={<AdminProductsPage />} />
-              <Route
-                path="/admin/create-new-product"
-                element={<AdminCreateProductPage />}
-              />
-              <Route
-                path="/admin/edit-product/:id"
-                element={<AdminEditProductPage />}
-              />
-              <Route path="/admin/orders" element={<AdminOrdersPage />} />
-              <Route
-                path="/admin/order-details/:id"
-                element={<AdminOrderDetailsPage />}
-              />
-              <Route path="/admin/analytics" element={<AdminAnalyticsPage />} />
-            </Route>
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/product-list" element={<ProductListPage />} />
+            <Route
+              path="/product-details/:id"
+              element={<ProductDetailsPage />}
+            />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/FaqPage" element={<FaqPage />} />
+            <Route path="/TermsConditions" element={<TermsConditions />} />
+            <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+            <Route path="/callbackservice" element={<CallbackService />} />
 
             <Route path="*" element="Page not exists 404" />
-          </Routes>
+          </Route>
+          {/* user protected routes: */}
+          <Route element={<ProtectedRoutesComponent admin={false} />}>
+            <Route path="/user" element={<UserProfilePage />} />
+            <Route path="/user/password" element={<UserPasswordPage />} />
+            <Route path="/user/my-orders" element={<UserOrdersPage />} />
+            <Route
+              path="/user/cart-details"
+              element={<UserCartDetailsPage />}
+            />
+            <Route
+              path="/user/order-details/:id"
+              element={<UserOrderDetailsPage />}
+            />
+          </Route>
 
-          {/* <FooterComponent /> */}
-        </Router>
-      </ApolloProvider>
+          {/* admin protected routes: */}
+
+          <Route element={<ProtectedRoutesComponent admin={true} />}>
+            <Route path="/admin/users" element={<AdminUsersPage />} />
+            <Route
+              path="/admin/edit-user/:id"
+              element={<AdminEditUserPage />}
+            />
+            <Route path="/admin/products" element={<AdminProductsPage />} />
+            <Route
+              path="/admin/create-new-product"
+              element={<AdminCreateProductPage />}
+            />
+            <Route
+              path="/admin/edit-product/:id"
+              element={<AdminEditProductPage />}
+            />
+            <Route path="/admin/orders" element={<AdminOrdersPage />} />
+            <Route
+              path="/admin/order-details/:id"
+              element={<AdminOrderDetailsPage />}
+            />
+            <Route path="/admin/analytics" element={<AdminAnalyticsPage />} />
+          </Route>
+
+          <Route path="*" element="Page not exists 404" />
+        </Routes>
+
+        {/* <FooterComponent /> */}
+      </Router>
     </>
   );
 }

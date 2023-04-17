@@ -1,10 +1,12 @@
 const express = require('express')
 const router = express.Router()
 const { verifyIsLoggedIn, verifyIsAdmin } = require("../middleware/verifyAuthToken");
-const {getUsers, registerUser, loginUser, updateUserProfile, updateUserPassword, getUserProfile, getUser, updateUser, deleteUser} = require("../controllers/userController")
+const {getUsers, registerUser, loginUser, verifyEmail, updateUserProfile, updateUserPassword, getUserProfile, getUser, updateUser, deleteUser} = require("../controllers/userController")
 
 router.post("/register", registerUser)
 router.post("/login", loginUser)
+
+router.get('/:id/verify/:token/', verifyEmail)
 
 // user logged in routes:
 router.use(verifyIsLoggedIn);

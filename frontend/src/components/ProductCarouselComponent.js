@@ -8,7 +8,7 @@ const ProductCarouselComponent = () => {
 
 
   return (
-    <Carousel className="mt-2 ms-1 carousel">
+    <Carousel className="carousel">
       <Carousel.Item>
         <img
           className="d-block w-100 c_img"
@@ -16,7 +16,7 @@ const ProductCarouselComponent = () => {
           alt="First slide"
         />
         <Carousel.Caption>
-{/*           <aside>
+          {/*           <aside>
             <h5 className="brand_title">Explore our brand</h5>
             <h1 className="brand_title">Paramount</h1>
             <p className="brand_detail">
@@ -36,7 +36,7 @@ const ProductCarouselComponent = () => {
           alt="First slide"
         />
         <Carousel.Caption>
-{/*           <aside>
+          {/*           <aside>
             <h5 className="brand_title">Explore our brand</h5>
             <h1 className="brand_title">BISON</h1>
             <p className="brand_detail">
@@ -56,7 +56,7 @@ const ProductCarouselComponent = () => {
           alt="Second slide"
         />
         <Carousel.Caption>
-{/*           <aside>
+          {/*           <aside>
             <h5 className="brand_title">Explore our brand</h5>
             <h2 className="brand_title">PRO</h2>
             <p className="brand_detail">

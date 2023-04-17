@@ -60,16 +60,13 @@ const RegisterPageComponent = ({
 
     const pattern =
       /^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(slrltd)\.com$/g;
-    if (!pattern.test(email) && email !== "")
-      /* {
-            alert(`Thank you for your application to register your interest in our company. 
-       We have received a large number of applications, however due to delivering exceptional service to our current clients, delivering a continuation of supply on all of our product lines and maintaining a competitive pricing structure we are unable to bring on any new clients at this stage.
-       This is not to say that in the future we would not be interested in securing your business. We will keep your information on hand and contact you at a time that we feel best suited to deliver you and your business the same service as detailed above.
-       `); 
-        } */ window.location.href = "/unfortunately";
+    /* if (!pattern.test(email) && email !== "")
+      window.location.href = "/unfortunately"; */
     /* else {
       alert(`Successfully registered with CTL Australia`);
     } */
+    // TODO 解锁上面
+
 
     /* 下面是一些form里面的判定 validation的判定 */
     if (
@@ -320,7 +317,7 @@ const RegisterPageComponent = ({
                 name="confirmPassword"
                 required
                 type="password"
-                placeholder="Repeat Password"
+                placeholder="Confirms Password"
                 minLength={6}
                 onChange={onChange}
               />
@@ -349,7 +346,7 @@ const RegisterPageComponent = ({
             </Row> */}
 
             <br />
-            <Button type="submit">
+            <Button type="submit" className="mb-3">
               {registerUserResponseState &&
               registerUserResponseState.loading === true ? (
                 <Spinner
@@ -381,7 +378,7 @@ const RegisterPageComponent = ({
               }
               variant="info"
             >
-              User created
+              An Email sent to your account please verify
             </Alert>
           </Form>
         </Col>

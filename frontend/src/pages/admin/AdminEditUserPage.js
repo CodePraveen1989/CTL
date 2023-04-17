@@ -6,8 +6,8 @@ const fetchUser = async (userId) => {
     return data;
 }
 
-const updateUserApiRequest = async (userId, name, lastName, email, isAdmin) => {
-    const { data } = await axios.put(`/api/users/${userId}`, { name, lastName, email, isAdmin });
+const updateUserApiRequest = async (userId, name, lastName, email, ipAddress, isAdmin) => {
+    const { data } = await axios.put(`/api/users/${userId}`, { name, lastName, email, ipAddress, isAdmin });
     return data;
 }
 

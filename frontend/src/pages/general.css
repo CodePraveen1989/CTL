@@ -1,8 +1,8 @@
 /* *********      每天三个deal        ************ */
 .top3_cont {
     /*     margin-left: 8%; */
-    padding-bottom: 1rem;
-    padding-top: 1rem;
+    padding-bottom: 0rem;
+    padding-top: 0rem;
 }
 
 .top3_img:hover {
@@ -35,9 +35,8 @@
 .o_p {
     color: #1E4881;
     font-weight: bold;
-    margin-top: 2rem;
     margin-bottom: 1rem;
-    padding-top: 1rem;
+    padding-top: 3rem;
 }
 
 
@@ -203,49 +202,29 @@
 }
 
 .product_card_btn {
-    background-color: #5c8dd1;
+    background-color: #073474;
     color: white;
     border: none;
 }
 
 .product_card_btn:hover {
-    background-color: #1e4881;
+    background-color: #6aa5f8;
     /*   background-image: linear-gradient(#68D4FE, #1E4881); */
 }
 
-
-
-/* ************* 按键波纹效果 ************** */
-/* .btn_blue {
-    background-color: #1E4881;
-    border: none;
+.card-title{
+    text-align: center;
+    text-overflow:hidden;
+    color:#073474;
 }
-
-.btn-ripple {
-    overflow: hidden;
-    position: relative;
-    transition: background-color 0.3s linear, border 0.3s linear;
+.card-title:hover{
+    text-decoration: underline;
 }
-
-.btn-ripple:after {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    background-image: radial-gradient(circle, #000 10%, rgba(0, 0, 0, 0) 10.01%);
-    background-repeat: no-repeat;
-    background-position: 50%;
-    transform: scale(10);
-    opacity: 0;
-    transition: transform 0.5s, opacity 1s;
+.card-price{
+    text-align: center;
+    text-overflow:hidden;
+    color:#073474;
 }
-
-.btn-ripple:active:after {
-    transform: scale(0);
-    opacity: 0.2;
-    transition: 0s;
-} */
+.card-price:hover{
+    text-decoration: underline;
+}

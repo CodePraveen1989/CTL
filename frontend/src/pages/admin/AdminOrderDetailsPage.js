@@ -1,8 +1,9 @@
 import OrderDetailsPageComponent from './components/OrderDetailsPageComponent'
+import { useSelector } from "react-redux";
 
 import axios from "axios";
 
-const getOrder = async(id) => {
+const getOrder = async (id) => {
     const { data } = await axios.get("/api/orders/user/" + id);
     return data
 }
@@ -22,7 +23,13 @@ const markAsPaid = async (id) => {
 }
 
 const AdminOrderDetailsPage = () => {
-  return <OrderDetailsPageComponent getOrder={getOrder} markAsDelivered={markAsDelivered} markAsPaid={markAsPaid}/>
+    const userInfo = useSelector((state) => state.userRegisterLogin.userInfo);
+
+    const getUser = async () => {
+        const { data } = await axios.get("/api/users/profile/" + userInfo._id);
+        return data;
+    };
+    return <OrderDetailsPageComponent getOrder={getOrder} getUser={getUser} markAsDelivered={markAsDelivered} markAsPaid={markAsPaid} />
 };
 
 export default AdminOrderDetailsPage;

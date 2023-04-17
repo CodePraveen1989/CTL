@@ -236,6 +236,7 @@ const InvoicePrint = (cartItems) => {
   const InvCartItems = cartItems.cartItems;
   const InvUserInfo = cartItems.userInfo;
   const InvAddress = cartItems.userAddress;
+  var counter = 0;
 
   console.log("Invoice cartItems", cartItems, typeof cartItems);
 
@@ -472,36 +473,36 @@ const InvoicePrint = (cartItems) => {
                 return (
                   <View style={styles.tableRowProducts} key={idx}>
                     <View style={styles.tableColHeaderShort}>
-                      <Text style={styles.tableColBillItem}>{item.ctlsku}</Text>
+                      <Text style={styles.tableColBillItem}>{item.cartProducts[0].ctlsku}</Text>
                     </View>
                     <View style={styles.tableColHeaderCenter}>
                       <Text style={styles.tableColBillItem}>{item.name}</Text>
                     </View>
                     <View style={styles.tableColHeaderShort}>
                       <Text style={styles.tableColBillItem}>
-                        {item.quantity}
+                        {item.cartProducts[0].quantity}
                       </Text>
                     </View>
                     <View style={styles.tableColHeaderShort}>
                       <Text style={styles.tableColBillItem}>
-                        {item.quantity}
+                        {item.cartProducts[0].quantity}
                       </Text>
                     </View>
                     <View style={styles.tableColHeaderShort}>
                       <Text style={styles.tableColBillItem}>
-                        ${item.price ? item.price.toLocaleString() : ''}
+                        ${item.cartProducts[0].price ? item.cartProducts[0].price.toLocaleString() : ''}
                       </Text>
                     </View>
                     <View style={styles.tableColHeaderShort}>
                       <Text style={styles.tableColBillItem}>
-                        $ {item.price ? (item.price * item.quantity).toLocaleString() : ''}
+                        $ {item.cartProducts[0].price ? (item.cartProducts[0].price * item.cartProducts[0].quantity).toLocaleString() : ''}
                       </Text>
                     </View>
                     <View style={styles.tableColHeaderShort}>
                       <Text style={styles.tableColBillItem}>
                         ${" "}
-                        {item.price ? (
-                          (item.price * item.quantity * 10) /
+                        {item.cartProducts[0].price ? (
+                          (item.cartProducts[0].price * item.cartProducts[0].quantity * 10) /
                           100
                         ).toLocaleString() : ''}
                       </Text>
@@ -509,9 +510,9 @@ const InvoicePrint = (cartItems) => {
                     <View style={styles.tableColHeaderSide}>
                       <Text style={styles.tableColBillItem}>
                         ${" "}
-                        {item.price ? (
-                          item.price * item.quantity +
-                          (item.price * item.quantity * 15) / 100
+                        {item.cartProducts[0].price ? (
+                          item.cartProducts[0].price * item.cartProducts[0].quantity +
+                          (item.cartProducts[0].price * item.cartProducts[0].quantity * 10) / 100
                         ).toLocaleString() : ''}
                       </Text>
                     </View>
@@ -609,7 +610,7 @@ const InvoicePrint = (cartItems) => {
                         <View style={styles.tableRowProducts} key={idx}>
                           <View style={styles.tableColHeaderShort}>
                             <Text style={styles.tableColBillItem}>
-                              {item.ctlsku}
+                              {item.cartProducts[0].ctlsku}
                             </Text>
                           </View>
                           <View style={styles.tableColHeaderCenter}>
@@ -619,29 +620,29 @@ const InvoicePrint = (cartItems) => {
                           </View>
                           <View style={styles.tableColHeaderShort}>
                             <Text style={styles.tableColBillItem}>
-                              {item.quantity}
+                              {item.cartProducts[0].quantity}
                             </Text>
                           </View>
                           <View style={styles.tableColHeaderShort}>
                             <Text style={styles.tableColBillItem}>
-                              {item.quantity}
+                              {item.cartProducts[0].quantity}
                             </Text>
                           </View>
                           <View style={styles.tableColHeaderShort}>
                             <Text style={styles.tableColBillItem}>
-                              ${item.price ? item.price.toLocaleString() : ''}
+                              ${item.cartProducts[0].price ? item.cartProducts[0].price.toLocaleString() : ''}
                             </Text>
                           </View>
                           <View style={styles.tableColHeaderShort}>
                             <Text style={styles.tableColBillItem}>
-                              $ {item.price ? (item.price * item.quantity).toLocaleString() : ''}
+                              $ {item.cartProducts[0].price ? (item.cartProducts[0].price * item.cartProducts[0].quantity).toLocaleString() : ''}
                             </Text>
                           </View>
                           <View style={styles.tableColHeaderShort}>
                             <Text style={styles.tableColBillItem}>
                               ${" "}
-                              {item.price ? (
-                                (item.price * item.quantity * 10) /
+                              {item.cartProducts[0].price ? (
+                                (item.cartProducts[0].price * item.cartProducts[0].quantity * 10) /
                                 100
                               ).toLocaleString() : ''}
                             </Text>
@@ -649,9 +650,9 @@ const InvoicePrint = (cartItems) => {
                           <View style={styles.tableColHeaderSide}>
                             <Text style={styles.tableColBillItem}>
                               ${" "}
-                              {item.price ? (
-                                item.price * item.quantity +
-                                (item.price * item.quantity * 15) / 100
+                              {item.cartProducts[0].price ? (
+                                item.cartProducts[0].price * item.cartProducts[0].quantity +
+                                (item.cartProducts[0].price * item.cartProducts[0].quantity * 10) / 100
                               ).toLocaleString() : ''}
                             </Text>
                           </View>

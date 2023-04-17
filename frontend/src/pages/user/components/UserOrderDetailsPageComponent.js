@@ -61,6 +61,7 @@ const UserOrderDetailsPageComponent = ({
 
         setPurchaseNumber(data.purchaseNumber);
         setCartItems(data.cartItems);
+        console.log("praveen", data.cartItems);
         setCartSubtotal(data.orderTotal.cartSubtotal);
         data.isDelivered
           ? setIsDelivered(data.deliveredAt)
@@ -140,12 +141,12 @@ const UserOrderDetailsPageComponent = ({
   return (
     <Container>
       <Row className="mt-4">
-        <h1>Order Details</h1>
+        <h1>ORDER DETAILS</h1>
         <Col md={9}>
           <br />
           <Row>
             <Col md={6}>
-              <h2>Shipping</h2>
+              <h3>SHIPPING</h3>
               <b>Name</b>: {userInfo.name} {userInfo.lastName} <br />
               <b>Site Location</b>: {userAddress.location} <br />
               <b>Phone</b>: {userAddress.phone} <br />
@@ -153,7 +154,7 @@ const UserOrderDetailsPageComponent = ({
               {userAddress.postCode}
             </Col>
             <Col md={6}>
-              <h2>Payment method</h2>
+              <h3>PAYMENT DETAILS</h3>
               <Form.Select value={paymentMethod} disabled={true}>
                 <option value="Invoice">Invoice</option>
                 {/* <option value="Credit Cards">Credit Cards</option> */}
@@ -167,7 +168,17 @@ const UserOrderDetailsPageComponent = ({
                   variant={isDelivered ? "success" : "danger"}
                 >
                   {isDelivered ? (
-                    <>Delivered at {isDelivered}</>
+                    <>
+                      Delivered at{" "}
+                      {new Date(isDelivered).toLocaleString("en-AU", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                        hour: "numeric",
+                        minute: "numeric",
+                        hour12: true,
+                      })}
+                    </>
                   ) : (
                     <>Not delivered</>
                   )}
@@ -178,13 +189,20 @@ const UserOrderDetailsPageComponent = ({
                   className="mt-3 lh-1 h-50 pt-2"
                   variant={isPaid ? "success" : "danger"}
                 >
-                  {isPaid ? <>Paid on {isPaid}</> : <>Not paid yet</>}
+                  {isPaid ? <>Paid on {new Date(isPaid).toLocaleString("en-AU", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                    hour: "numeric",
+                    minute: "numeric",
+                    hour12: true,
+                  })}</> : <>Not paid yet</>}
                 </Alert>
               </Col>
             </Row>
           </Row>
           <br />
-          <h2>Order items</h2>
+          <h3>ORDER ITEMS</h3>
           <ListGroup variant="flush">
             {cartItems.map((item, idx) => (
               <CartItemComponent item={item} key={idx} orderCreated={true} />
@@ -192,32 +210,37 @@ const UserOrderDetailsPageComponent = ({
           </ListGroup>
         </Col>
         <Col md={3}>
+
           <ListGroup>
             <ListGroup.Item>
-              <h3>Order summary</h3>
+              <h3>ORDER SUMMARY</h3>
             </ListGroup.Item>
             <ListGroup.Item>
-              Items price (after tax):{" "}
-              <span className="fw-bold">
-                {" "}
-                $ {cartSubtotal.toLocaleString()}
+              Item Price (after tax) :{" "}
+              <span className="fw-bold">{" "}$ {cartSubtotal.toLocaleString()}
               </span>
             </ListGroup.Item>
             <ListGroup.Item>
               Items: <span className="fw-bold">{cartItems.length}</span> products
             </ListGroup.Item>
             <ListGroup.Item>
-              Tax: <span className="fw-bold">included</span>
+              Tax: <span className="fw-bold">Included</span>
             </ListGroup.Item>
-            <ListGroup.Item className="text-danger">
-              Total price:{" "}
-              <span className="fw-bold">
-                {" "}
-                $ {cartSubtotal.toLocaleString()}
-              </span>
+            <ListGroup.Item >
+              Total Price :&nbsp;
+
+              {isDelivered && isPaid ?
+                <span className="fw-bold text-success">${cartSubtotal.toLocaleString()}</span>
+                :
+                isPaid ?
+                  <span className="fw-bold text-warning">${cartSubtotal.toLocaleString()}</span>
+                  :
+                  <span className="fw-bold text-danger">${cartSubtotal.toLocaleString()}</span>
+
+              }
             </ListGroup.Item>
             <ListGroup.Item>
-              Your Purchase Order No:{" "}
+              Purchase Order:{" "}
               <span className="fw-bold">{purchaseNumber}</span>
             </ListGroup.Item>
             <ListGroup.Item>
@@ -235,7 +258,7 @@ const UserOrderDetailsPageComponent = ({
                       invoiceDate={createdAt}
                     />
                   }
-                  fileName={invoiceNumber}
+                  fileName={"INV-" + invoiceNumber}
                 >
                   {({ loading }) =>
                     loading ? (
@@ -252,7 +275,9 @@ const UserOrderDetailsPageComponent = ({
               </div>
             </ListGroup.Item>
           </ListGroup>
+          <label><u><a href="/user/my-orders">Go to My Orders </a></u></label>
         </Col>
+
       </Row>
     </Container>
   );

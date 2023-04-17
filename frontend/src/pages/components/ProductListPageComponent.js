@@ -94,14 +94,14 @@ const ProductListPage = ({ getProducts, categories }) => {
   // 用来handle filter，所有设置过的filter都要在这里写一遍
   const handleFilters = () => {
     // 点击filter的时候，就取消当前的pageNum，意思是：点击之后，使用当前path，但是把最后的数字换成空。\/[0-9]的意思是两个//之前必须是数字
-    navigate(location.pathname.replace(/\/[0-9]+$/, "")); 
+    navigate(location.pathname.replace(/\/[0-9]+$/, ""));
     setShowResetFiltersButton(true);
     setFilters({
       category: categoriesFromFilter,
       attrs: attrsFromFilter,
       /*       price: price,
             rating: ratingsFromFilter, */
-    }); 
+    });
   };
 
   const resetFilters = () => {
@@ -172,14 +172,14 @@ const ProductListPage = ({ getProducts, categories }) => {
             )}
 
           </Row>
-            {paginationLinksNumber > 1 ? (
-              <PaginationComponent
-                categoryName={categoryName}
-                searchQuery={searchQuery}
-                paginationLinksNumber={paginationLinksNumber}
-                pageNum={pageNum}
-              />
-            ) : null}
+          {paginationLinksNumber > 1 ? (
+            <PaginationComponent
+              categoryName={categoryName}
+              searchQuery={searchQuery}
+              paginationLinksNumber={paginationLinksNumber}
+              pageNum={pageNum}
+            />
+          ) : null}
         </Col>
       </Row>
     </Container>

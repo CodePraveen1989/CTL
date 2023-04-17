@@ -804,67 +804,67 @@ const Navb = () => {
   //#endregion
 
   /* POWER TOOLS */
-  var POWER_TOOLS = "/product-list?categoryName=POWER-TOOLS";
-  // #region
-  var POWER_TOOLS_1 = [
-    {
-      label: "POWER PACKS",
-      type: 3,
-      link: POWER_TOOLS + "&subCategoryName=POWER-PACKS",
-    },
-    { label: "DRILLS", type: 3, link: POWER_TOOLS + "&subCategoryName=DRILLS" },
-    {
-      label: "IMPACTS & FASTENING",
-      type: 3,
-      link: POWER_TOOLS + "&subCategoryName=IMPACTS-FASTENING",
-    },
-    {
-      label: "METAL WORKING",
-      type: 3,
-      link: POWER_TOOLS + "&subCategoryName=METAL-WORKING",
-    },
-  ];
+  // var POWER_TOOLS = "/product-list?categoryName=POWER-TOOLS";
+  // // #region
+  // var POWER_TOOLS_1 = [
+  //   {
+  //     label: "POWER PACKS",
+  //     type: 3,
+  //     link: POWER_TOOLS + "&subCategoryName=POWER-PACKS",
+  //   },
+  //   { label: "DRILLS", type: 3, link: POWER_TOOLS + "&subCategoryName=DRILLS" },
+  //   {
+  //     label: "IMPACTS & FASTENING",
+  //     type: 3,
+  //     link: POWER_TOOLS + "&subCategoryName=IMPACTS-FASTENING",
+  //   },
+  //   {
+  //     label: "METAL WORKING",
+  //     type: 3,
+  //     link: POWER_TOOLS + "&subCategoryName=METAL-WORKING",
+  //   },
+  // ];
 
-  var POWER_TOOLS_2 = [
-    {
-      label: "JOBSITE CLEAN UP",
-      type: 3,
-      link: POWER_TOOLS + "&subCategoryName=JOBSITE-CLEAN-UP",
-    },
-    {
-      label: "LIGHTING",
-      type: 3,
-      link: POWER_TOOLS + "&subCategoryName=LIGHTING",
-    },
-    {
-      label: "JOBSITE AUDIO",
-      type: 3,
-      link: POWER_TOOLS + "&subCategoryName=JOBSITE-AUDIO",
-    },
-    {
-      label: "ELECTRICAL",
-      type: 3,
-      link: POWER_TOOLS + "&subCategoryName=ELECTRICAL",
-    },
-  ];
-  var POWER_TOOLS_3 = [
-    {
-      label: "TEST & MEASURE",
-      type: 3,
-      link: POWER_TOOLS + "&subCategoryName=TEST-MEASURE",
-    },
-    { label: "LASERS", type: 3, link: POWER_TOOLS + "&subCategoryName=LASERS" },
-    {
-      label: "SPECIALITY TOOLS",
-      type: 3,
-      link: POWER_TOOLS + "&subCategoryName=SPECIALITY TOOLS",
-    },
-    {
-      label: "BATTERIES & CHARGERS",
-      type: 3,
-      link: POWER_TOOLS + "&subCategoryName=BATTERIES-CHARGERS",
-    },
-  ];
+  // var POWER_TOOLS_2 = [
+  //   {
+  //     label: "JOBSITE CLEAN UP",
+  //     type: 3,
+  //     link: POWER_TOOLS + "&subCategoryName=JOBSITE-CLEAN-UP",
+  //   },
+  //   {
+  //     label: "LIGHTING",
+  //     type: 3,
+  //     link: POWER_TOOLS + "&subCategoryName=LIGHTING",
+  //   },
+  //   {
+  //     label: "JOBSITE AUDIO",
+  //     type: 3,
+  //     link: POWER_TOOLS + "&subCategoryName=JOBSITE-AUDIO",
+  //   },
+  //   {
+  //     label: "ELECTRICAL",
+  //     type: 3,
+  //     link: POWER_TOOLS + "&subCategoryName=ELECTRICAL",
+  //   },
+  // ];
+  // var POWER_TOOLS_3 = [
+  //   {
+  //     label: "TEST & MEASURE",
+  //     type: 3,
+  //     link: POWER_TOOLS + "&subCategoryName=TEST-MEASURE",
+  //   },
+  //   { label: "LASERS", type: 3, link: POWER_TOOLS + "&subCategoryName=LASERS" },
+  //   {
+  //     label: "SPECIALITY TOOLS",
+  //     type: 3,
+  //     link: POWER_TOOLS + "&subCategoryName=SPECIALITY TOOLS",
+  //   },
+  //   {
+  //     label: "BATTERIES & CHARGERS",
+  //     type: 3,
+  //     link: POWER_TOOLS + "&subCategoryName=BATTERIES-CHARGERS",
+  //   },
+  // ];
   //#endregion
 
   var ELECTRICAL = "/product-list?categoryName=ELECTRICAL";
@@ -1080,70 +1080,52 @@ const Navb = () => {
   };
   //#endregion
 
-  /* ACCESSORIES */
-  // var ACCESSORIES = "/product-list?categoryName=ACCESSORIES";
-  // // #region
-  // var ACCESSORIES_1 = [
-  //   {
-  //     label: "FIBRE DISCS",
-  //     type: 3,
-  //     link: ACCESSORIES + "&subCategoryName=FIBRE-DISCS",
-  //   },
-  //   {
-  //     label: "DRILLING",
-  //     type: 3,
-  //     link: ACCESSORIES + "&subCategoryName=DRILLING",
-  //   },
-  //   {
-  //     label: "SDS DRILL BITS FOR MASONRY",
-  //     type: 3,
-  //     link: ACCESSORIES + "&subCategoryName=SDS-DRILL-BITS-FOR-MASONRY",
-  //   },
-  //   {
-  //     label: "CUTTING DISCS",
-  //     type: 3,
-  //     link: ACCESSORIES + "&subCategoryName=UTTING-DISCS",
-  //   },
-  // ];
-  // var ACCESSORIES_2 = [
-  //   {
-  //     label: "LINISHING BELTS & DISCS",
-  //     type: 3,
-  //     link: ACCESSORIES + "&subCategoryName=LINISHING-BELTS-DISCS",
-  //   },
-  //   {
-  //     label: "GRINDING WHEELS",
-  //     type: 3,
-  //     link: ACCESSORIES + "&subCategoryName=GRINDING-WHEELS",
-  //   },
-  //   {
-  //     label: "MULTI TOOL BLADES",
-  //     type: 3,
-  //     link: ACCESSORIES + "&subCategoryName=MULTI-TOOL-BLADES",
-  //   },
-  //   {
-  //     label: "FLAP WHEELS",
-  //     type: 3,
-  //     link: ACCESSORIES + "&subCategoryName=FLAP-WHEELS",
-  //   },
-  // ];
-  // var ACCESSORIES_3 = [
-  //   {
-  //     label: "CUTTING BLADES",
-  //     type: 3,
-  //     link: ACCESSORIES + "&subCategoryName=CUTTING-BLADES",
-  //   },
-  //   {
-  //     label: "HOLE SAWS",
-  //     type: 3,
-  //     link: ACCESSORIES + "&subCategoryName=HOLE-SAWS",
-  //   },
-  //   {
-  //     label: "CONCRETE DRILLINGS",
-  //     type: 3,
-  //     link: ACCESSORIES + "&subCategoryName=CONCRETE-DRILLINGS",
-  //   },
-  // ];
+
+
+  /* CHEMICALS */
+  var CHEMICALS = "/product-list?categoryName=CHEMICALS";
+  // #region
+  var CHEMICALS_1 = [
+    {
+      label: "CHEMICALS ONE",
+      type: 3,
+      link: CHEMICALS + "&subCategoryName=CHEMICALS ONE",
+    },
+    {
+      label: "CHEMICALS TWO",
+      type: 3,
+      link: CHEMICALS + "&subCategoryName=CHEMICALS TWO",
+    },
+
+  ];
+  var CHEMICALS_2 = [
+    {
+      label: "CHEMICALS ONE",
+      type: 3,
+      link: CHEMICALS + "&subCategoryName=CHEMICALS ONE",
+    },
+    {
+      label: "CHEMICALS TWO",
+      type: 3,
+      link: CHEMICALS + "&subCategoryName=CHEMICALS TWO",
+    },
+
+  ];
+  var CHEMICALS_3 = [
+    {
+      label: "CHEMICALS ONE",
+      type: 3,
+      link: CHEMICALS + "&subCategoryName=CHEMICALS ONE",
+    },
+    {
+      label: "CHEMICALS TWO",
+      type: 3,
+      link: CHEMICALS + "&subCategoryName=CHEMICALS TWO",
+    },
+
+  ];
+
+  // 
   // //#endregion
 
   var INDUSTRIAL = "/product-list?categoryName=INDUSTRIAL";
@@ -1611,47 +1593,7 @@ const Navb = () => {
               </div>
             </div>
 
-            {/* ACCESSORIES */}
-            {/* <div className="w3c_dropdown">
-              <div className="dropbtn">
-                <a href={ACCESSORIES}>ACCESSORIES</a>
-              </div>
-              <div className="dropdown-content">
-                <div className="row">
-                  <ul className="column">
-                    {ACCESSORIES_1.map((item) => {
-                      return (
-                        <li key={item.link} className={nav_color[item.type]}>
-                          <a href={item.link}>{item.label} </a>
-                        </li>
-                      );
-                    })}
-                  </ul>
 
-                  <ul className="column">
-                    {ACCESSORIES_2.map((item) => {
-                      return (
-                        <li key={item.link} className={nav_color[item.type]}>
-                          <a href={item.link}>{item.label} </a>
-                        </li>
-                      );
-                    })}
-                  </ul>
-
-                  <ul className="column">
-                    {ACCESSORIES_3.map((item) => {
-                      return (
-                        <li key={item.link} className={nav_color[item.type]}>
-                          <a href={item.link}>{item.label} </a>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              </div>
-            </div> */}
-
-            {/* INDUSTRIAL */}
             <div className="w3c_dropdown">
               <div className="dropbtn">
                 <a href={INDUSTRIAL}>INDUSTRIAL</a>
@@ -1715,15 +1657,15 @@ const Navb = () => {
               </div>
             </div>
 
-            {/* POWER TOOLS */}
+            {/* CHEMICALS */}
             <div className="w3c_dropdown">
               <div className="dropbtn">
-                <a href={POWER_TOOLS}>POWER TOOLS</a>
+                <a href={CHEMICALS}>CHEMICALS</a>
               </div>
               <div className="dropdown-content">
                 <div className="row">
                   <ul className="column">
-                    {POWER_TOOLS_1.map((item) => {
+                    {CHEMICALS_1.map((item) => {
                       return (
                         <li key={item.link} className={nav_color[item.type]}>
                           <a href={item.link}>{item.label} </a>
@@ -1732,7 +1674,7 @@ const Navb = () => {
                     })}
                   </ul>
                   <ul className="column">
-                    {POWER_TOOLS_2.map((item) => {
+                    {CHEMICALS_2.map((item) => {
                       return (
                         <li key={item.link} className={nav_color[item.type]}>
                           <a href={item.link}>{item.label} </a>
@@ -1741,7 +1683,7 @@ const Navb = () => {
                     })}
                   </ul>
                   <ul className="column">
-                    {POWER_TOOLS_3.map((item) => {
+                    {CHEMICALS_3.map((item) => {
                       return (
                         <li key={item.link} className={nav_color[item.type]}>
                           <a href={item.link}>{item.label} </a>
@@ -1749,54 +1691,10 @@ const Navb = () => {
                       );
                     })}
                   </ul>
+
                 </div>
               </div>
             </div>
-
-            {/* MECHANICAL
-            <div className="w3c_dropdown">
-              <div className="dropbtn">
-                <a href="/product-list/category/ELECTRICAL">MECHANICAL</a>
-              </div>
-              <div className="dropdown-content">
-                <div className="row">
-                  <ul className="column">
-                    <li>
-                      <a href="/product-list">Link1</a>
-                    </li>
-                    <li>
-                      <a href="/product-list">Link2</a>
-                    </li>
-                    <li>
-                      <a href="/product-list">Link3</a>
-                    </li>
-                  </ul>
-                  <ul className="column">
-                    <li>
-                      <a href="/product-list">Link1</a>
-                    </li>
-                    <li>
-                      <a href="/product-list">Link2</a>
-                    </li>
-                    <li>
-                      <a href="/product-list">Link3</a>
-                    </li>
-                  </ul>
-                  <ul className="column">
-                    <li>
-                      <a href="/product-list">Link1</a>
-                    </li>
-                    <li>
-                      <a href="/product-list">Link2</a>
-                    </li>
-                    <li>
-                      <a href="/product-list">Link3</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div> */}
-
 
 
             {/* ELECTRICAL */}

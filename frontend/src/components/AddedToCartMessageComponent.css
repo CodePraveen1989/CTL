@@ -1,0 +1,24 @@
+.added-to-cart-message {
+    position: fixed;
+    top:-140px;
+    left: 75%;
+    transform: translateY(20%);
+    opacity: 0;
+    z-index: 9999;
+    transition: opacity 2s ease-in-out, top 2s ease-in-out;
+    background-color: #073474;
+    color:white;
+  }
+  
+  .added-to-cart-message.show {
+    opacity: 1;
+    top: 14%;
+  }
+  
+  .added-to-cart-message:hover {
+    opacity: 1;
+    top: 14%;
+    transition:none;
+  }
+  
+  

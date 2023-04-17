@@ -20,11 +20,12 @@ const UserOrdersPageComponent = ({ getOrders }) => {
   const headers = [
     { name: "No#", field: "index", sortable: false },
     { name: "Date", field: "createdAt", sortable: true },
-    { name: "Total", field: "cartSubtotal", sortable: true },
+    { name: "Total", field: "cartSubtotal", sortable: false },
     { name: "Delivered", field: "isDelivered", sortable: true },
     { name: "Paid", field: "isPaid", sortable: true },
-    { name: "Order details", field: "_id", sortable: false },
-    { name: "PO#", field: "purchaseNumber", sortable: true }
+    { name: "PO#", field: "purchaseNumber", sortable: true },
+    { name: "Order details", field: "_id", sortable: false }
+
   ];
 
 
@@ -36,6 +37,7 @@ const UserOrdersPageComponent = ({ getOrders }) => {
         orders =>
           orders.createdAt.toUpperCase().includes(search.toUpperCase()) ||
           orders.purchaseNumber.toUpperCase().includes(search.toUpperCase())
+
       );
     }
 
@@ -48,7 +50,7 @@ const UserOrdersPageComponent = ({ getOrders }) => {
       computedOrders = computedOrders.sort((a, b) => {
         const fieldA = a[sorting.field];
         const fieldB = b[sorting.field];
-        
+
         if (typeof fieldA === "number" && typeof fieldB === "number") {
           return reversed * (fieldA - fieldB);
         } else if (typeof fieldA === "string" && typeof fieldB === "string") {
@@ -66,7 +68,7 @@ const UserOrdersPageComponent = ({ getOrders }) => {
       (currentPage - 1) * ITEMS_PER_PAGE + ITEMS_PER_PAGE
     );
   }, [orders, currentPage, search, sorting]);
-// #endregion
+  // #endregion
 
 
 
@@ -82,7 +84,7 @@ const UserOrdersPageComponent = ({ getOrders }) => {
         <UserLinksComponent />
       </Col>
       <Col md={10}>
-        <h1>My Orders</h1>
+        <h1>MY ORDERS</h1>
         <div className="row">
           <div className="col-md-6">
             <Pagination
@@ -114,7 +116,7 @@ const UserOrdersPageComponent = ({ getOrders }) => {
                 <tr key={idx} >
                   <td>{idx + 1}</td>
                   <td>{order.createdAt.substring(0, 10)}</td>
-                  <td> $ {order.orderTotal.cartSubtotal.toLocaleString()}</td>
+                  <td>{order.orderTotal.cartSubtotal}</td>
                   <td>
                     {order.isDelivered ? <i className="bi bi-check-lg text-success"></i> : <i className="bi bi-x-lg text-danger"></i>}
                   </td>
@@ -125,10 +127,10 @@ const UserOrdersPageComponent = ({ getOrders }) => {
                       <i className="bi bi-x-lg text-danger"></i>
                     )}
                   </td>
+                  <td>{order.purchaseNumber}</td>
                   <td>
                     <Link to={`/user/order-details/${order._id}`}>go to order</Link>
                   </td>
-                  <td>{order.purchaseNumber}</td>
                 </tr>
               )
             )}

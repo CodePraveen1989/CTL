@@ -14,29 +14,40 @@ const EditUserPageComponent = ({ updateUserApiRequest, fetchUser }) => {
     const navigate = useNavigate();
 
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    const form = event.currentTarget.elements;
-    const name = form.name.value;
-    const lastName = form.lastName.value;
-    const email = form.email.value;
-    const isAdmin = form.isAdmin.checked;
-    if (event.currentTarget.checkValidity() === true) {
-        updateUserApiRequest(id, name, lastName, email, isAdmin)
-        .then(data => {
-          // 如果data 等于 user updated 怎转去admin/users page
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const form = event.currentTarget.elements;
+      const name = form.name.value;
+      const lastName = form.lastName.value;
+      const email = form.email.value;
+      let ipAddress = form.ipAddress.value;
+      const isAdmin = form.isAdmin.checked;
+    
+      // Set ipAddress to "" if "remove" is entered
+      if (ipAddress === "remove") {
+        ipAddress = '';
+      }
+    
+      if (event.currentTarget.checkValidity() === true) {
+        updateUserApiRequest(id, name, lastName, email, ipAddress, isAdmin)
+          .then((data) => {
             if (data === "user updated") {
-                navigate("/admin/users");
+              navigate("/admin/users");
             }
-        })
-        .catch(er => {
-            setUpdateUserResponseState({ error: er.response.data.message ? er.response.data.message : er.response.data });
-        })
-    }
-
-    setValidated(true);
-  };
+          })
+          .catch((er) => {
+            setUpdateUserResponseState({
+              error: er.response.data.message
+                ? er.response.data.message
+                : er.response.data,
+            });
+          });
+      }
+    
+      setValidated(true);
+    };
+    
 
     useEffect(() => {
         fetchUser(id)
@@ -77,6 +88,7 @@ const EditUserPageComponent = ({ updateUserApiRequest, fetchUser }) => {
                 defaultValue={user.lastName} 
               />
             </Form.Group>
+
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email</Form.Label>
               <Form.Control
@@ -84,6 +96,16 @@ const EditUserPageComponent = ({ updateUserApiRequest, fetchUser }) => {
                 required
                 type="email"
                 defaultValue={user.email}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicipAddress">
+              <Form.Label>IP Address (enter remove to remove IP address)</Form.Label>
+              <Form.Control
+                name="ipAddress"
+                required
+                type="text"
+                defaultValue={user.ipAddress}
               />
             </Form.Group>
 

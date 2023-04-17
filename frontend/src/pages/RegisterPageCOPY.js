@@ -1,3 +1,5 @@
+
+// #region
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
@@ -9,7 +11,7 @@ import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import { Container } from 'react-bootstrap';
 import "./general.css"
-
+// #regionend
 
 const RegisterPageCOPY = () => {
   const [formState, setFormState] = useState({

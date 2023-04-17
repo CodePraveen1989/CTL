@@ -39,10 +39,10 @@ const HeaderComponent = () => {
     if (e.keyCode && e.keyCode !== 13) return;
     e.preventDefault();
     if (searchQuery.trim()) {
-        navigate(`/product-list?searchQuery=${searchQuery}`);
+      navigate(`/product-list?searchQuery=${searchQuery}`);
     }
   }
-  
+
   const location = useLocation();
   // const query = qs.parse(location.search, { ignoreQueryPrefix: true });
 
@@ -81,6 +81,8 @@ const HeaderComponent = () => {
                 aria-describedby="basic-addon2"
                 bg="white"
                 className="mt-3"
+
+
               />
               <Button
                 /* variant="outline-secondary" */
@@ -94,7 +96,7 @@ const HeaderComponent = () => {
           </Nav>
 
           {/* ************   User and Carts  ***************  */}
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          {/* <Navbar.Toggle aria-controls="responsive-navbar-nav" /> */}
           <Navbar.Collapse id="responsive-navbar-nav">
             {/* 折叠区间 */}
             <Nav>
@@ -105,7 +107,7 @@ const HeaderComponent = () => {
               ) : userInfo.name && !userInfo.isAdmin ? (
                 <>
                   <div className="w3c_dropdown mt-2 me-2">
-                    <div className="users_initial">{`${userInfo.name.charAt(0)}${userInfo.lastName.charAt(0)}`}</div>
+                    <div className="users_initial" >{`${userInfo.name.charAt(0)}${userInfo.lastName.charAt(0)}`}</div>
                     <div className="users_dropdown">
                       <div className="users_row">
                         <div className="users_column">
@@ -139,13 +141,13 @@ const HeaderComponent = () => {
                         style={{ fontSize: "1.5rem" }}
                       ></i>
                       <Badge pill bg="danger" style={{ fontSize: "0.6rem" }}>
-                        {itemsCount === 0 ? "" : "$ "+cartSubtotal.toLocaleString()}
+                        {itemsCount === 0 ? "" : "$ " + cartSubtotal.toLocaleString()}
                       </Badge>
                     </Nav.Link>
                   </LinkContainer>
 
                   {/* ************   mining cart  ***************  */}
-{/*                   <LinkContainer className="hd_c" to="/cart">
+                  {/*                   <LinkContainer className="hd_c" to="/cart">
                     <Nav.Link className="mining_cart">
                       <i
                         className="bi bi-minecart-loaded hd_c"

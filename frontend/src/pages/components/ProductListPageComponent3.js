@@ -137,7 +137,7 @@ const ProductListPage = ({
     window.location.href = "/product-list";
   };
 
-  console.log("Total number of products :", products.length);
+  console.log("有木有产品", products.length);
 
   return (
     <Container className="ms-2" fluid>
@@ -153,39 +153,14 @@ const ProductListPage = ({
             <ListGroup.Item>
               <FilterComponent />
             </ListGroup.Item>
-            {/* 
-            这个意思是：如果location 的 path name 里面没有 category 这个单词，then show category filter         
-            {!location.pathname.match(/\/category/) && (
-              <ListGroup.Item>
-                <CategoryFilterComponent
-                  setCategoriesFromFilter={setCategoriesFromFilter}
-                />
-              </ListGroup.Item>
-            )}
-            <ListGroup.Item>
-              <AttributesFilterComponent
-                attrsFilter={attrsFilter}
-                setAttrsFromFilter={setAttrsFromFilter}
-              />
-            </ListGroup.Item> */}
 
-            {/* ************ filter button *********** */}
-            {/*             <ListGroup.Item>
-              <Button variant="primary" onClick={handleFilters}>
-                Filter
-              </Button>{" "}
-              {showResetFiltersButton && (
-                <Button onClick={resetFilters} variant="danger">
-                  Reset filters
-                </Button>
-              )}
-            </ListGroup.Item> */}
           </ListGroup>
         </Col>
         <Col xxl={10} xl={9} lg={9} md={9}>
           <Row className="m-2" xs={1} md={2} lg={3} xl={4} xxl={6}>
             {loading ? (
-              <h1>Loading products ....</h1>
+              <img src="./loading-gif.gif"></img>
+              // <h1>Loading products ....</h1>
             ) : error ? (
               <h1>Error while loading products. Please try again later.</h1>
             ) : products.length === 0 ? (
@@ -196,7 +171,7 @@ const ProductListPage = ({
                   key={product._id}
                   images={product.images}
                   name={product.name}
-                  price={product.price}
+                  price={product.stock[0].price}
                   productId={product._id}
                   slrsku={product.slrsku}
                 />

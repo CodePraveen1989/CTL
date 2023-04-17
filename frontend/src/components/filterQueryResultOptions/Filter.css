@@ -13,23 +13,24 @@
     font-weight: bold;
     box-shadow: none;
     line-height: 1rem;
+    color:#ffffff;
 
 }
 
 .accordion-header {
-    background-color: #e9e9e9;
+    background-color: #073474;
     margin-top: 0.5rem;
-
+    
 }
 
 .accordion-header:hover {
-    background-color: #1e4881;
+    background-color: #578fdd;
     /* background-image: linear-gradient(#68D4FE, #1E4881); */
     color: white;
 }
 
 .accordion-body {
-    border-top: 2px solid #1e4881;
+    border: 2px solid #1e4881;
 }
 
 .subCatFilter {
@@ -42,13 +43,15 @@
     /* font-weight: bolder; */
 }
 
-.subCatFilter>a:hover {
-    color: #68D4FE;
+
+.subCatFilter:hover a{
+    color:#26c3f3
 }
 
 .activeLabel>a {
-    color: #68D4FE;
+    color: #26c3f3;
 }
+
 
 .hideit {
     display: none;
@@ -69,6 +72,9 @@ margin-bottom: 0;
 
 .active {
     color: #1e4881;
+}
+.active a:hover {
+    text-decoration: underline;
 }
 
 .Highlight {

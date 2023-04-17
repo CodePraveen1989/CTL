@@ -15,6 +15,9 @@ const userSchema = mongoose.Schema(
       required: true,
       unique: true,
     },
+    ipAddress: {
+      type: String,
+    },
     phone: {
       type: String,
     },
@@ -23,13 +26,13 @@ const userSchema = mongoose.Schema(
     },
     location: {
       type: String,
-    }, 
+    },
     company: {
       type: String,
-    }, 
+    },
     role: {
       type: String,
-    }, 
+    },
     address: {
       type: String,
     },
@@ -54,11 +57,14 @@ const userSchema = mongoose.Schema(
       required: true,
       default: false,
     },
+    verified: { type: Boolean, default: false },
   },
   {
     timestamps: true,
   }
 );
+
+/* userSchema.index({ ipAddress: 1 }, { unique: true, sparse: true }); */
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;

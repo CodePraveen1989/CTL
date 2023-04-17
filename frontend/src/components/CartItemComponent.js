@@ -10,7 +10,7 @@ const CartItemComponent = ({
   changeCount = false,
 }) => {
 
-  console.log('cartItemComponent',item);
+  console.log('cartItemComponent', item);
 
   return (
     <>
@@ -19,26 +19,26 @@ const CartItemComponent = ({
           <Col md={2}>
             <div className="">
               {/* Image */}
-                <img
-                  crossOrigin="anonymous"
-                  src={item.image ? item.image.path ?? null : null}
+              <img
+                crossOrigin="anonymous"
+                src={item.image ? item.image.path ?? null : null}
 
-                  className="w-100 img_hovf"
-                  alt="s"
-                />
+                className="w-100 img_hovf"
+                alt="s"
+              />
               {/* Image */}
             </div>
           </Col>
           <Col md={4}>
             <a href={`/product-details/${item.productID}`}>
               <p>
-                <strong>{item.name}</strong>
+                <strong class="text-uppercase">{item.name}</strong>
               </p>
             </a>
           </Col>
           <Col md={3}>
             <p><span className="font-weight-bold">{item.cartProducts[0].attrs}</span></p>
-            <p><span className="font-weight-bold">Price: $</span>{item.cartProducts[0].price}</p>
+            <p><span className="font-weight-bold">Unit Price: $</span>{item.cartProducts[0].price}</p>
             {/*  */}
           </Col>
           <Col md={2}>

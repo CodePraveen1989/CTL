@@ -1,0 +1,26 @@
+.verifyEmail {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	margin-top: 10%;
+	flex-direction: column;
+}
+
+.blue_btn {
+	border: none;
+	outline: none;
+	padding: 12px 0;
+	background-color: #366ab3;
+	border-radius: 20px;
+	width: 180px;
+	font-weight: bold;
+	font-size: 14px;
+	cursor: pointer;
+    color: white;
+    margin-top: 3rem;
+}
+
+.verified_logo {
+    width: 7%;
+}

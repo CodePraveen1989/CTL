@@ -10,10 +10,11 @@ import {
   Image,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useState, useEffect, Fragment, useRef } from "react";
+import React, { useState, useEffect, Fragment, useRef } from "react";
 import { useParams } from "react-router-dom";
 //当更改了产品信息，就navigate去product list page
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const onHover = {
   cursor: "pointer",
@@ -100,9 +101,9 @@ const AdminEditProductPage = ({
     fetchProduct(id)
       .then((product) => setProduct(product))
       .catch((er) => console.log(er));
-  }, [id, pdfRemoved, pdfUploaded]);
+  }, [id, pdfRemoved, pdfUploaded, ]);
 
-  const handleSubmit = (event) => {
+  /*   const handleSubmit = (event) => {
     event.preventDefault();
     event.stopPropagation();
     const form = event.currentTarget;
@@ -141,6 +142,97 @@ const AdminEditProductPage = ({
 
       category: form.category.value,
       attributesTable: [],
+    };
+
+    if (event.currentTarget.checkValidity() === true) {
+      updateProductApiRequest(id, formInputs)
+        .then((data) => {
+          if (data.message === "product updated") navigate("/admin/products");
+        })
+        .catch((er) =>
+          setUpdateProductResponseState({
+            error: er.response.data.message
+              ? er.response.data.message
+              : er.response.data,
+          })
+        );
+    }
+
+    setValidated(true);
+  }; */
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    const form = event.currentTarget;
+
+    const stock = [];
+    for (
+      let i = 0;
+      i < document.querySelectorAll(".stockExisting").length;
+      i++
+    ) {
+      const count = parseInt(document.getElementsByName(`count-${i}`)[0].value);
+      const replenishment = parseInt(
+        document.getElementsByName(`replenishment-${i}`)[0].value
+      );
+      const price = document.getElementsByName(`price-${i}`)[0].value;
+      const attrs = document.getElementsByName(`attrs-${i}`)[0].value;
+      const barcode = document.getElementsByName(`barcode-${i}`)[0].value;
+      const ctlsku = document.getElementsByName(`ctlsku-${i}`)[0].value;
+      const slrsku = document.getElementsByName(`slrsku-${i}`)[0].value;
+      const suppliersku = document.getElementsByName(`suppliersku-${i}`)[0]
+        .value;
+
+      const finalCount = replenishment ? count + replenishment : count;
+
+      stock.push({
+        count: finalCount,
+        price,
+        attrs,
+        barcode,
+        ctlsku,
+        slrsku,
+        suppliersku,
+      });
+    }
+
+    const stockNew = [];
+    for (let i = 0; i < document.querySelectorAll(".stockNew").length; i++) {
+      const count = document.getElementsByName(`newCount-${i}`)[0].value;
+      const price = document.getElementsByName(`newPrice-${i}`)[0].value;
+      const attrs = document.getElementsByName(`newAttrs-${i}`)[0].value;
+      const barcode = document.getElementsByName(`newBarcode-${i}`)[0].value;
+      const ctlsku = document.getElementsByName(`newCtlsku-${i}`)[0].value;
+      const slrsku = document.getElementsByName(`newSlrsku-${i}`)[0].value;
+      const suppliersku = document.getElementsByName(`newSuppliersku-${i}`)[0]
+        .value;
+
+      stockNew.push({
+        count,
+        price,
+        attrs,
+        barcode,
+        ctlsku,
+        slrsku,
+        suppliersku,
+      });
+    }
+    // check if stockNew is an array
+    /* if (Array.isArray(stockNew) && stockNew.length > 0) {
+      stock.push(...stockNew);
+    } */
+    const formInputs = {
+      name: form.name.value,
+      description: form.description.value,
+      min: form.Min.value,
+      max: form.Max.value,
+      purchaseprice: form.PurchasePrice.value,
+      slrcurrentbuyingprice: form.SLRCurrentBuyingPrice.value,
+      supplier: form.supplier.value,
+      category: form.category.value,
+      attributesTable: [],
+      stock: [...stock, ...stockNew],
     };
 
     if (event.currentTarget.checkValidity() === true) {
@@ -272,6 +364,37 @@ const AdminEditProductPage = ({
     }
   };
 
+  // add new product attrs in Stock
+  const [rowCount, setRowCount] = useState(0);
+  const handleNewProduct = () => {
+    setRowCount(rowCount + 1);
+  };
+  const handleRemoveProduct = () => {
+    setRowCount(rowCount - 1);
+  };
+
+
+/*   const [selectedStock, setSelectedStock] = useState(null);
+
+  const handleDeleteStock = async (stockId) => {
+    try {
+      const res = await axios.delete(`/api/products/admin/${product._id}/stock/${stockId}`);
+      setSelectedStock(null);
+      console.log(res.data); // log the updated product to the console
+      window.location.reload();
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+  console.log('selectedStock',selectedStock); */
+
+  const handleRemoveStock = (index) => {
+    const newStock = [...product.stock];
+    newStock.splice(index, 1);
+    setProduct({ ...product, stock: newStock });
+  };
+
+  console.log('ProductStock',product.stock);
   return (
     <Container fluid>
       <Row className="justify-content-md-center mt-5">
@@ -312,32 +435,317 @@ const AdminEditProductPage = ({
               />
             </Form.Group>
 
+            <hr
+              style={{
+                color: "#000000",
+                backgroundColor: "#000000",
+                height: 0.5,
+                borderColor: "#000000",
+              }}
+            />
+            {product &&
+              product.stock &&
+              product.stock.map((item, index) => (
+                <div key={item._id}>
+                <>
+                  <span className="stockExisting text-primary">Product: {index + 1}</span>
+                  <Row>
+                    <React.Fragment>
+                      <Form.Group
+                        as={Col}
+                        md="3"
+                        className="mb-3"
+                        controlId={`formBasicCount-${index}`}
+                      >
+                        <Form.Label>Count</Form.Label>
+                        <Form.Control
+                          name={`count-${index}`}
+                          required
+                          type="number"
+                          defaultValue={item.count}
+                        />
+                      </Form.Group>
+                      <Form.Group
+                        as={Col}
+                        md="2"
+                        className="mb-3"
+                        controlId={`formBasicReplenishment-${index}`}
+                      >
+                        <Form.Label>Replenishment</Form.Label>
+                        <Form.Control
+                          name={`replenishment-${index}`}
+                          type="number"
+                          placeholder="Entre Count"
+                        />
+                      </Form.Group>
+                      <Form.Group
+                        as={Col}
+                        md="3"
+                        className="mb-3"
+                        controlId={`formBasicAttrs-${index}`}
+                      >
+                        <Form.Label>Attrs</Form.Label>
+                        <Form.Control
+                          name={`attrs-${index}`}
+                          required
+                          type="text"
+                          defaultValue={item.attrs}
+                        />
+                      </Form.Group>
+                      <Form.Group
+                        as={Col}
+                        md="3"
+                        className="mb-3"
+                        controlId={`formBasicBarcde-${index}`}
+                      >
+                        <Form.Label>Barcode</Form.Label>
+                        <Form.Control
+                          name={`barcode-${index}`}
+                          required
+                          type="text"
+                          defaultValue={item.barcode}
+                        />
+                      </Form.Group>
+                      <Form.Group as={Col} md="1" className="mb-3">
+                      <i
+                        className="bi bi-trash mt-3"
+                        // onClick={() => setSelectedStock(item)}
+                        onClick={() => handleRemoveStock(index)}
+                        style={{
+                          cursor: "pointer",
+                        }}
+                      ></i>
+                    </Form.Group>
+                    </React.Fragment>
+                  </Row>
+                  <Row>
+                    <React.Fragment key={index}>
+                      <Form.Group
+                        as={Col}
+                        md="3"
+                        className="mb-3"
+                        controlId={`formBasicPrice-${index}`}
+                      >
+                        <Form.Label>SLR Price</Form.Label>
+                        <Form.Control
+                          name={`price-${index}`}
+                          required
+                          type="text"
+                          defaultValue={item.price}
+                        />
+                      </Form.Group>
+                      <Form.Group
+                        as={Col}
+                        md="3"
+                        className="mb-3"
+                        controlId={`formBasicSLRSKU-${index}`}
+                      >
+                        <Form.Label>SLR SKU</Form.Label>
+                        <Form.Control
+                          name={`slrsku-${index}`}
+                          required
+                          type="text"
+                          defaultValue={item.slrsku}
+                        />
+                      </Form.Group>
+                      <Form.Group
+                        as={Col}
+                        md="3"
+                        className="mb-3"
+                        controlId={`formBasicCTLSKU-${index}`}
+                      >
+                        <Form.Label>CTL SKU</Form.Label>
+                        <Form.Control
+                          name={`ctlsku-${index}`}
+                          required
+                          type="text"
+                          defaultValue={item.ctlsku}
+                        />
+                      </Form.Group>
+                      <Form.Group
+                        as={Col}
+                        md="3"
+                        className="mb-3"
+                        controlId={`formBasicSupplierSKU-${index}`}
+                      >
+                        <Form.Label>Supplier SKU</Form.Label>
+                        <Form.Control
+                          name={`suppliersku-${index}`}
+                          required
+                          type="text"
+                          defaultValue={item.suppliersku}
+                        />
+                      </Form.Group>
+                    </React.Fragment>
+                  </Row>
+                </>
+                </div>
+              ))}
+
+            {/* add new product */}
+            {[...Array(rowCount)].map((_, index) => (
+              <>
+                <span className="stockNew text-primary">
+                  New Product: {index + 1}
+                </span>
+                <Row>
+                  <React.Fragment key={index}>
+                    <Form.Group
+                      as={Col}
+                      md="3"
+                      className="mb-3"
+                      controlId={`formBasicNewCount-${index}`}
+                    >
+                      <Form.Label>Count</Form.Label>
+                      <Form.Control
+                        name={`newCount-${index}`}
+                        required
+                        type="text"
+                      />
+                    </Form.Group>
+                    <Form.Group
+                      as={Col}
+                      md="4"
+                      className="mb-3"
+                      controlId={`formBasicNewAttrs-${index}`}
+                    >
+                      <Form.Label>Attrs</Form.Label>
+                      <Form.Control
+                        name={`newAttrs-${index}`}
+                        required
+                        type="text"
+                      />
+                    </Form.Group>
+                    <Form.Group
+                      as={Col}
+                      md="4"
+                      className="mb-3"
+                      controlId={`formBasicNewBarcde-${index}`}
+                    >
+                      <Form.Label>Barcode</Form.Label>
+                      <Form.Control
+                        name={`newBarcode-${index}`}
+                        required
+                        type="text"
+                      />
+                    </Form.Group>
+                    <Form.Group as={Col} md="1" className="mb-3">
+                      <i
+                        className="bi bi-trash mt-3"
+                        onClick={handleRemoveProduct}
+                        style={{
+                          cursor: "pointer",
+                        }}
+                      ></i>
+                    </Form.Group>
+                  </React.Fragment>
+                </Row>
+                <Row>
+                  <React.Fragment key={index}>
+                    <Form.Group
+                      as={Col}
+                      md="3"
+                      className="mb-3"
+                      controlId={`formBasicNewPrice-${index}`}
+                    >
+                      <Form.Label>SLR Price</Form.Label>
+                      <Form.Control
+                        name={`newPrice-${index}`}
+                        required
+                        type="text"
+                      />
+                    </Form.Group>
+                    <Form.Group
+                      as={Col}
+                      md="3"
+                      className="mb-3"
+                      controlId={`formBasicNewSLRSKU-${index}`}
+                    >
+                      <Form.Label>SLR SKU</Form.Label>
+                      <Form.Control
+                        name={`newSlrsku-${index}`}
+                        required
+                        type="text"
+                      />
+                    </Form.Group>
+                    <Form.Group
+                      as={Col}
+                      md="3"
+                      className="mb-3"
+                      controlId={`formBasicNewCTLSKU-${index}`}
+                    >
+                      <Form.Label>CTL SKU</Form.Label>
+                      <Form.Control
+                        name={`newCtlsku-${index}`}
+                        required
+                        type="text"
+                      />
+                    </Form.Group>
+                    <Form.Group
+                      as={Col}
+                      md="3"
+                      className="mb-3"
+                      controlId={`formBasicNewSupplierSKU-${index}`}
+                    >
+                      <Form.Label>Supplier SKU</Form.Label>
+                      <Form.Control
+                        name={`newSuppliersku-${index}`}
+                        required
+                        type="text"
+                      />
+                    </Form.Group>
+                  </React.Fragment>
+                </Row>
+              </>
+            ))}
+
+            <hr />
+            <p
+              onClick={handleNewProduct}
+              style={{
+                cursor: "pointer",
+                textAlign: "center",
+                fontStyle: "italic",
+              }}
+            >
+              Add New Product
+            </p>
+            <hr />
+
+            {/* {selectedStock && (
+        <div>
+          <p>Are you sure you want to delete this stock object?</p>
+          <button onClick={() => handleDeleteStock(selectedStock._id)}>Delete</button>
+          <button onClick={() => setSelectedStock(null)}>Cancel</button>
+        </div>
+      )} */}
+
             <Row>
               <Form.Group
                 as={Col}
                 md="3"
                 className="mb-3"
-                controlId="formBasicCount"
+                controlId="formBasicPurchasePrice"
               >
-                <Form.Label>Count in stock</Form.Label>
+                <Form.Label>Purchase Price</Form.Label>
                 <Form.Control
-                  name="count"
+                  name="PurchasePrice"
                   required
-                  type="number"
-                  defaultValue={product.count}
+                  type="text"
+                  defaultValue={product.purchaseprice}
                 />
               </Form.Group>
               <Form.Group
                 as={Col}
                 md="3"
                 className="mb-3"
-                controlId="formBasicMin"
+                controlId="formBasicSLRBuyingPrice"
               >
-                <Form.Label>Replenishment</Form.Label>
+                <Form.Label>SLR Buying Price</Form.Label>
                 <Form.Control
-                  name="replenishment"
-                  type="number"
-                  placeholder="Entre Count"
+                  name="SLRCurrentBuyingPrice"
+                  type="text"
+                  defaultValue={product.slrcurrentbuyingprice}
                 />
               </Form.Group>
               <Form.Group
@@ -371,95 +779,6 @@ const AdminEditProductPage = ({
             </Row>
 
             <Row>
-              <Form.Group
-                as={Col}
-                md="4"
-                className="mb-3"
-                controlId="formBasicprice"
-              >
-                <Form.Label>SLR Price</Form.Label>
-                <Form.Control
-                  name="price"
-                  required
-                  type="text"
-                  defaultValue={product.price}
-                />
-              </Form.Group>
-              <Form.Group
-                as={Col}
-                md="4"
-                className="mb-3"
-                controlId="formBasicPurchasePrice"
-              >
-                <Form.Label>Purchase Price</Form.Label>
-                <Form.Control
-                  name="PurchasePrice"
-                  required
-                  type="text"
-                  defaultValue={product.purchaseprice}
-                />
-              </Form.Group>
-              <Form.Group
-                as={Col}
-                md="4"
-                className="mb-3"
-                controlId="formBasicSLRBuyingPrice"
-              >
-                <Form.Label>SLR Buying Price</Form.Label>
-                <Form.Control
-                  name="SLRCurrentBuyingPrice"
-                  type="text"
-                  defaultValue={product.slrcurrentbuyingprice}
-                />
-              </Form.Group>
-            </Row>
-
-            <Row>
-              <Form.Group
-                as={Col}
-                md="6"
-                className="mb-3"
-                controlId="formBasicSLRSKU"
-              >
-                <Form.Label>SLR SKU</Form.Label>
-                <Form.Control
-                  name="slrsku"
-                  required
-                  type="text"
-                  defaultValue={product.slrsku}
-                />
-              </Form.Group>
-              <Form.Group
-                as={Col}
-                md="6"
-                className="mb-3"
-                controlId="formBasicCTLSKU"
-              >
-                <Form.Label>CTL SKU</Form.Label>
-                <Form.Control
-                  name="ctlsku"
-                  required
-                  type="text"
-                  defaultValue={product.ctlsku}
-                />
-              </Form.Group>
-            </Row>
-
-            <Row>
-              <Form.Group
-                as={Col}
-                md="6"
-                className="mb-3"
-                controlId="formBasicSupplierSKU"
-              >
-                <Form.Label>Supplier SKU</Form.Label>
-                <Form.Control
-                  name="SupplierSKU"
-                  required
-                  type="text"
-                  defaultValue={product.suppliersku}
-                />
-              </Form.Group>
               <Form.Group
                 as={Col}
                 md="6"

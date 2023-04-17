@@ -18,6 +18,18 @@
   transition: 0.5s;
 }
 
+.form-control:focus{
+  color:#000000;
+  box-shadow: 0 0 0 0rem rgba(255, 255, 255, 0.25); 
+  text-decoration: none;
+  }
+.form-control:focus::-webkit-input-placeholder 
+{
+    color: transparent;
+}
+    
+
+
 /* ****************** Header ****************** */
 .loginHide {
   display: none;
@@ -36,12 +48,13 @@
 }
 
 .hd_bgc {
-  background: white;
+  background: #dde4e9;
+  background-image: linear-gradient(to right, rgba(255,255,255), rgba(0, 117, 255, 0.5));
 }
 
 .CTL_btn {
   background-color: #5c8dd1;
-  border: none;
+  border-left: 0;
 }
 
 .CTL_btn:hover {
@@ -60,6 +73,7 @@
 
 .hd_c:hover {
   color: black;
+
 }
 
 .login {
@@ -74,8 +88,9 @@
   width: 30%;
 }
 
+
 #responsive-navbar-nav {
-  padding-top: 1rem;
+  padding-left: 5%;
 }
 
 .w3c_dropdown:hover .users_dropdown {
@@ -85,7 +100,6 @@
 .users_dropdown {
   display: none;
   position: absolute;
-  /*   margin-left: 15%; */
   background-color: #f9f9f9;
   width: 6%;
   right: 1;
@@ -133,18 +147,16 @@
   margin-left: 12rem;
 }
 
-.navb {
-  height: 50%;
-}
-
 .nav_bgc {
-  background: #1e4881;
+  background: #073474;
+  height:3em;
+  font-weight: bold;
 }
 
 .nav_c {
   color: white;
   font-weight: bold;
-  /*     margin-left:3.4rem */
+   
 }
 
 #basic-navbar-nav {
@@ -153,7 +165,7 @@
 }
 
 .nav_c:hover {
-  color: black;
+  color: rgb(14, 13, 13);
 }
 
 .nav {
@@ -226,33 +238,24 @@
 }
 
 /* Dropdown button */
-.w3c_dropdown .dropbtn {
+.dropbtn {
   font-size: 16px;
-  border: none;
   outline: none;
-  color: white;
-  /* padding: 0px 16px; */
   background-color: inherit;
   font: inherit;
-  /* Important for vertical align on mobile phones */
   margin: 0;
-  /* Important for vertical align on mobile phones */
 }
 
 /* Add a red background color to navbar links on hover */
-.w3c_nav a:hover,
-.w3c_dropdown:hover .dropbtn {
-  color: black;
+
+
+.w3c_dropdown:hover {
+  font-weight: bold;
+  text-decoration: underline;
+  border: 1px;
+  border-style: solid;
+  border-color: #ffffff;
 }
-
-/* .w3c_nav {
-  display: grid;
-  grid-template-columns: 3% 9% 6% 13% 15% 13% 13% 12% 16%;
-} */
-
-/* .nav_right {
-  margin-left: 1.2rem;
-} */
 
 /* Dropdown content (hidden by default) */
 .dropdown-content {
@@ -260,13 +263,15 @@
   position: absolute;
   margin-left: 10%;
   margin-right: 10%;
-  top: 2rem;
+  top: 2.4rem;
   width: 80%;
   height: 100%;
-  background-color: #f9f9f9;
   left: 0;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 99;
+  font-weight: normal;
+  border-top: #ffffff;
+  border-top-width: 1px;
+  border-top-style: solid;
 }
 
 /* Show the dropdown menu on hover FOR BRAND */
@@ -277,12 +282,10 @@
 .dropdown-content-brand {
   display: none;
   position: absolute;
-  /*   margin-left: 15%; */
-  background-color: #f9f9f9;
+  background-color: #ffffff;
   width: 14%;
-  top: 2rem;
+  top: 2.5rem;
   left: 1;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 99;
 }
 
@@ -290,8 +293,6 @@
   padding: 4px;
   text-decoration: none;
 }
-
-
 
 /* brand_img */
 .brand_img {
@@ -304,6 +305,9 @@
 
 .brand_img:hover {
   scale: 105%;
+  /* border-width:1px;
+  border-color: #000000;
+  border-style: solid; */
 }
 
 /* Show the dropdown menu on hover */
@@ -316,14 +320,14 @@
   float: left;
   width: 33.33%;
   padding: 10px;
-  background-color: rgb(233, 233, 233);
+  background-color: #073474;
   height: auto;
 }
 
 /* Style links inside the columns */
 .column a {
   float: none;
-  color: #1e4881;
+  color: #ffffff;
   padding: 16px;
   text-decoration: none;
   display: block;
@@ -332,22 +336,16 @@
 }
 
 /* Add a background color on hover */
-.childCat a:hover {
-  background-color: #5c8dd1;
-  color: white;
+.childCat a:hover,
+.subCat > a:hover{
+  text-decoration: underline;
 }
 
-/* .subCat {
-  background-color: #1e4881;
-} */
 
 .subCat a {
   font-size: large;
   font-weight: bolder;
-}
-
-.subCat > a:hover {
-  color: #5c8dd1;
+  color: rgb(22, 220, 255);
 }
 
 
@@ -431,12 +429,32 @@ li:hover {
 
 /* ****************** Footer ****************** */
 
+.foot{
+   width: 100%;
+   height:auto;
+   
+}
 .ft_bgc {
-  background-color: #091f63;
+ background: #073474;
+  height: 20%;
 }
 
-.frist-col {
-  padding-left: 10%;
+.first-col {
+  padding-top: 15px;
+  padding-left: 12%;
+  font-weight: bolder;
+  color: #ffffff;
+  text-align: left;
+}
+.first-col h6{
+  text-decoration: underline;
+}
+.ft_c {
+  color: white;
+  font-weight: lighter;
+}
+.ft_c:hover{
+  text-decoration: underline;
 }
 
 /* ****************** Carousel ****************** */
@@ -456,6 +474,10 @@ li:hover {
     float: right;
     margin-bottom: 10rem; */
   color: black;
+}
+.carousel{
+  padding-top: 1px;
+  background-color: #dde4e9;
 }
 
 .carousel-inner > .item {
@@ -501,28 +523,10 @@ aside {
   background-color: transparent;
 }
 
-/* *******************    Home page bottom cards        *********************** */
-/* .diagonal{
-  transform:skewX(10deg);
-  width:20%;
-  
+.color-pattern{
+  background-color: #e5e5f7;
+opacity: 0.2;
+background-image:  linear-gradient(30deg, #bee7fc 12%, transparent 12.5%, transparent 87%, #bee7fc 87.5%, #bee7fc), linear-gradient(150deg, #bee7fc 12%, transparent 12.5%, transparent 87%, #bee7fc 87.5%, #bee7fc), linear-gradient(30deg, #bee7fc 12%, transparent 12.5%, transparent 87%, #bee7fc 87.5%, #bee7fc), linear-gradient(150deg, #bee7fc 12%, transparent 12.5%, transparent 87%, #bee7fc 87.5%, #bee7fc), linear-gradient(60deg, #bee7fc77 25%, transparent 25.5%, transparent 75%, #bee7fc77 75%, #bee7fc77), linear-gradient(60deg, #bee7fc77 25%, transparent 25.5%, transparent 75%, #bee7fc77 75%, #bee7fc77);
+background-size: 80px 140px;
+background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
 }
-.content_new{
-  transform:skewX(-10deg);
-  width:80%;
-  margin-left: 10%;
-}
-
-.textover{
-  position: absolute;
-  bottom: 0;
-  background: rgb(18, 36, 87); 
-  background: rgba(221, 231, 245, 0.5); 
-  color: #080808;
-  width: 100%;
-  padding: 20px;
-}
-
-.cardshadow:hover{
-  box-shadow: 0 8px 8px 0 rgba(221, 231, 245, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-} */

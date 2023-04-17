@@ -15,21 +15,21 @@ const CartPageComponent = ({
 
   const removeFromCartHandler = (id, qty, price) => {
     if (window.confirm("Are you sure?")) {
-        reduxDispatch(removeFromCart(id, qty, price));        
+      reduxDispatch(removeFromCart(id, qty, price));
     }
     window.location.reload()
- }
+  }
 
-console.log('cartItems',cartItems);
+  console.log('cartItems', cartItems);
 
 
   return (
     <Container>
-      <Row className="mt-4">
+      <Row className="mt-5">
         <Col md={8}>
-          <h1>Shopping Cart</h1>
+          <h1>SHOPPING CART</h1><br />
           {cartItems.length === 0 ? (
-            <Alert variant="info">Your cart is empty</Alert>
+            <Alert variant="info">Your Cart Is Empty</Alert>
           ) : (
             <ListGroup variant="flush">
               {cartItems.map((item, idx) => (
@@ -40,7 +40,7 @@ console.log('cartItems',cartItems);
                   removeFromCartHandler={removeFromCartHandler}
                 />
               ))}
-            </ListGroup> 
+            </ListGroup>
           )}
         </Col>
         <Col md={4}>
@@ -53,7 +53,7 @@ console.log('cartItems',cartItems);
             </ListGroup.Item>
             <ListGroup.Item>
               <LinkContainer to="/user/cart-details">
-                <Button disabled={cartSubtotal === 0} type="button">Proceed To Checkout</Button>
+                <Button disabled={cartSubtotal === 0} type="button" variant="success">Proceed To Checkout</Button>
               </LinkContainer>
             </ListGroup.Item>
           </ListGroup>

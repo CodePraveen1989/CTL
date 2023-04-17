@@ -10,8 +10,8 @@ const LoginPageComponent = ({ loginUserApiRequest, reduxDispatch, setReduxUserSt
     error: "",
     loading: false,
   });
-  // const [email, setEmail] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [ipAddress, setIpAddress] = useState('');
 
   const navigate = useNavigate();
 
@@ -19,51 +19,52 @@ const LoginPageComponent = ({ loginUserApiRequest, reduxDispatch, setReduxUserSt
     event.preventDefault();
     event.stopPropagation();
     const form = event.currentTarget.elements;
-
+  
     const email = form.email.value;
     const password = form.password.value;
     const doNotLogout = form.doNotLogout.checked;
-
+  
     if (event.currentTarget.checkValidity() === true && email && password) {
-      setLoginUserResponseState({ loading: true });
-      loginUserApiRequest(email, password, doNotLogout)
+        setLoginUserResponseState({ loading: true });
+      loginUserApiRequest(email, password, doNotLogout, ipAddress)
         .then((res) => {
-          setLoginUserResponseState({ success: res.success, loading: false, error: "" });
-
-          if (res.userLoggedIn) {
-            reduxDispatch(setReduxUserState(res.userLoggedIn));
-          }
-
-          if (res.success === "user logged in" && !res.userLoggedIn.isAdmin) window.location.assign('/user/my-orders')
-          else window.location.assign('/admin/orders')
-
+            setLoginUserResponseState({ success: res.success, loading: false, error: "" });
+  
+            if (res.userLoggedIn) {
+                reduxDispatch(setReduxUserState(res.userLoggedIn));
+            }
+  
+            if (res.success === "user logged in" && !res.userLoggedIn.isAdmin) window.location.assign('/user/my-orders') 
+            else window.location.assign('/admin/orders')
+  
         })
-        .catch((er) =>
-          setLoginUserResponseState({ error: er.response.data.message ? er.response.data.message : er.response.data })
-        );
+        .catch((er) => {
+          const errorMessage = er.response.data.message || er.response.data;
+          setLoginUserResponseState({ error: errorMessage, loading: false });
+          setErrorMessage(errorMessage);
+        });
     }
-
+  
     setValidated(true);
-
+  
     event.preventDefault();
-
-    // Check if the email address ends with "@slrltd.com"
+  
     if (email.endsWith('@slrltd.com')) {
-      // Allow login
-
+        fetch('https://api.ipify.org?format=json')
+          .then(response => response.json())
+          .then(data => setIpAddress(data.ip))
     } else {
-      // Deny login
       setErrorMessage('You are not authorized to login!');
     }
   };
+  
 
 
-
+  
   return (
     <Container>
       <Row className="mt-5 justify-content-md-center">
         <Col md={6} className="w-100">
-          {/* <h1>Login</h1> */}
           <Form noValidate validated={validated} onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
@@ -72,8 +73,8 @@ const LoginPageComponent = ({ loginUserApiRequest, reduxDispatch, setReduxUserSt
                 required
                 type="email"
                 placeholder="Enter email"
-                // 只有slrltd可以login
-                pattern=".+@(slrltd.com|admin.com)"
+                // pattern=".+@(slrltd.com|admin.com)"
+                // TODO 解锁上面
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -93,16 +94,9 @@ const LoginPageComponent = ({ loginUserApiRequest, reduxDispatch, setReduxUserSt
               />
             </Form.Group>
 
-            {/* <Row className="pb-2">
-              <Col>
-                Don't you have an account?
-                <Link to={"/register"}> Register </Link>
-              </Col>
-            </Row> */}
-
             <Button className="mb-3" variant="primary" type="submit">
               {loginUserResponseState &&
-                loginUserResponseState.loading === true ? (
+              loginUserResponseState.loading === true ? (
                 <Spinner
                   as="span"
                   animation="border"
@@ -120,6 +114,7 @@ const LoginPageComponent = ({ loginUserApiRequest, reduxDispatch, setReduxUserSt
                 loginUserResponseState &&
                 loginUserResponseState.error === "wrong credentials"
               }
+
               variant="danger"
             >
               Incorrect email or password!

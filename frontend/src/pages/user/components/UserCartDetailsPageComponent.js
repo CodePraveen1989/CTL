@@ -31,10 +31,10 @@ const UserCartDetailsPageComponent = ({
   getUser,
   createOrder,
   getAllOrder,
-  emptyCart 
+  emptyCart
 }) => {
   /* popup window */
-  const [show, setShow] = useState(false); 
+  const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -122,7 +122,7 @@ const UserCartDetailsPageComponent = ({
 
 
   const orderHandler = () => {
-    
+
     const orderData = {
       orderTotal: {
         itemsCount: itemsCount,
@@ -133,7 +133,7 @@ const UserCartDetailsPageComponent = ({
           productID: item.productID,
           name: item.name,
           image: { path: item.image ? item.image.path ?? null : null },
-          cartProducts:[
+          cartProducts: [
             {
               attrs: item.cartProducts[0].attrs,
               barcode: item.cartProducts[0].barcode,
@@ -156,9 +156,9 @@ const UserCartDetailsPageComponent = ({
       paymentMethod: paymentMethod,
       purchaseNumber: purchaseNumber,
       invoiceNumber: "SLR000" + (largestInvoice + 1),
-      
+
     };
-    
+
     createOrder(orderData)
       .then((data) => {
         if (data) {
@@ -166,8 +166,8 @@ const UserCartDetailsPageComponent = ({
         }
       })
       .catch((err) => console.log(err));
-      reduxDispatch(emptyCart())
-      
+    reduxDispatch(emptyCart())
+
   };
 
   /* 修改支付方式的vale */
@@ -194,28 +194,24 @@ const UserCartDetailsPageComponent = ({
     e.target.reset()
   };
 
-
-
-
-
   return (
     <>
       <Container>
         <Row className="mt-4">
-          <h1>Cart Details</h1>
+          <h1>CART DETAILS</h1>
           <Col md={8}>
             <br />
             <Row>
-              <Col md={6}>
-                <h2>Shipping</h2>
+              <Col md={5}>
+                <h3>SHIPPING</h3>
                 <b>Name</b>: {userInfo.name} {userInfo.lastName} <br />
                 <b>Site Location</b>: {userAddress.location} <br />
                 <b>Phone</b>: {userAddress.phone} <br />
                 <b>Address</b>: {userAddress.city} {userAddress.state}{" "}
                 {userAddress.postCode}
               </Col>
-              <Col md={6}>
-                <h3>Payment method</h3>
+              <Col md={5}>
+                <h3>PAYMENT METHOD</h3>
                 <Form.Select onChange={choosePayment} disabled>
                   <option value="Invoice">Invoice</option>
                   {/* <option value="Credit Cards">Credit Cards</option> */}
@@ -223,21 +219,21 @@ const UserCartDetailsPageComponent = ({
                 </Form.Select>
               </Col>
               <Row>
-                <Col>
+                <Col md={5}>
                   <Alert className="mt-3 lh-1 h-50 pt-2" variant="danger">
-                    Not delivered.
+                    Not Delivered.
                     {missingAddress}
                   </Alert>
-                </Col>
-                <Col>
-                  <Alert className="mt-3 lh-1 h-50 pt-2" variant="success">
-                    Not paid yet
+                </Col>&nbsp;&nbsp;&nbsp;
+                <Col md={5}>
+                  <Alert className="mt-3 lh-1 h-50 pt-2 pl-2" variant="danger">
+                    Not Paid Yet
                   </Alert>
                 </Col>
               </Row>
             </Row>
             <br />
-            <h3>Order items</h3>
+            <h3>ORDER ITEMS</h3>
             <ListGroup variant="flush">
               {cartItems.map((item, idx) => (
                 <CartItemComponent
@@ -249,13 +245,13 @@ const UserCartDetailsPageComponent = ({
               ))}
             </ListGroup>
           </Col>
-          <Col md={{ span: 3, offset: 1 }}>
+          <Col SM={{ span: 4, offset: 1 }}>
             <ListGroup>
               <ListGroup.Item>
                 <h4>Need Management Approval?</h4>
               </ListGroup.Item>
               <ListGroup.Item>
-                Items price (after tax):{" "}
+                Items Price (After Tax):{" "}
                 <span className="fw-bold">${cartSubtotal.toLocaleString()}</span>
               </ListGroup.Item>
 
@@ -267,7 +263,7 @@ const UserCartDetailsPageComponent = ({
                     type="button"
                     onClick={handleShow}
                   >
-                    Sending by Click
+                    Sending By Click
                   </Button>
                 </div>
               </ListGroup.Item>
@@ -275,16 +271,16 @@ const UserCartDetailsPageComponent = ({
 
             <ListGroup className="mt-5">
               <ListGroup.Item>
-                <h2>Order summary</h2>
+                <h3>ORDER SUMMARY</h3>
               </ListGroup.Item>
               <ListGroup.Item>
-                Shipping: <span className="fw-bold">included</span>
+                Shipping: <span className="fw-bold">Included</span>
               </ListGroup.Item>
               <ListGroup.Item>
-                Tax: <span className="fw-bold">included</span>
+                Tax: <span className="fw-bold">Included</span>
               </ListGroup.Item>
               <ListGroup.Item>
-                Total price:{" "}
+                Total Price:{" "}
                 <span className="fw-bold text-danger">${cartSubtotal.toLocaleString()}</span>
               </ListGroup.Item>
 
@@ -296,11 +292,11 @@ const UserCartDetailsPageComponent = ({
                   onChange={enterPurchaseNum}
                   type="string"
                   name="SLRPurchaseNumber"
-                  placeholder="Your Purchase Number"
+                  placeholder="Please Enter Your Purchase Number"
                   required
                 />
                 <Form.Control.Feedback type="invalid">
-                  Please enter your purchase number.{" "}
+                  Please Enter Your Purchase Number.{" "}
                 </Form.Control.Feedback>
                 {/* <Form.Control.Feedback>Looks good!</Form.Control.Feedback> */}
               </ListGroup.Item>
@@ -340,7 +336,7 @@ const UserCartDetailsPageComponent = ({
                 required
               />
               <Form.Control.Feedback type="invalid">
-                Please enter an email.{" "}
+                Please Enter an Email.{" "}
               </Form.Control.Feedback>
             </Form.Group>
 
@@ -356,7 +352,7 @@ const UserCartDetailsPageComponent = ({
                 required
               />
               <Form.Control.Feedback type="invalid">
-                Please enter PO.{" "}
+                Please Enter PO.{" "}
               </Form.Control.Feedback>
             </Form.Group>
 
@@ -373,12 +369,12 @@ const UserCartDetailsPageComponent = ({
               />
             </Form.Group>
             <Button type="submit" variant="outline-primary">
-              SEND
+              Send
             </Button>
             <Button variant="secondary" onClick={handleClose} className="ms-3">
               Close
             </Button>
-          </Form> 
+          </Form>
         </Modal.Body>
       </Modal>
     </>

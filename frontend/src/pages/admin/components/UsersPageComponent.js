@@ -45,6 +45,7 @@ const UsersPageComponent = ({ fetchUsers, deleteUser }) => {
               <th>First Name</th>
               <th>Last Name</th>
               <th>Email</th>
+              <th>IP Address</th>
               <th>Is Admin</th>
               <th>Edit/Delete</th>
             </tr>
@@ -57,6 +58,7 @@ const UsersPageComponent = ({ fetchUsers, deleteUser }) => {
                   <td>{user.name}</td>
                   <td>{user.lastName}</td>
                   <td>{user.email}</td>
+                  <td>{user.ipAddress}</td>
                   <td>
                     {user.isAdmin ? <i className="bi bi-check-lg text-success"></i> : <i className="bi bi-x-lg text-danger"></i>}
                   </td>

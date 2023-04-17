@@ -6,7 +6,7 @@ const pdfValidate = require("../utils/pdfValidate");
 const getProducts = async (req, res, next) => {
   try {
     let query = {};
-    let queryCondition = false;
+    let queryCondition = false; 
     let priceQueryCondition = {};
     // 如果query price存在，就pass小于等于XXX
     if (req.query.price) {
@@ -217,7 +217,33 @@ const adminDeleteProduct = async (req, res, next) => {
   }
 };
 
-const adminCreateProduct = async (req, res, next) => {
+/* const adminDeleteProductAttr = async (req, res) => {
+  try {
+    const { id, stockId } = req.params;
+    // find the product by ID
+    const product = await Product.findById(id);
+    if (!product) {
+      return res.status(404).send({ error: 'Product not found' });
+    }
+    // find the stock object by ID
+    const stockIndex = product.stock.findIndex(stock => String(stock._id) === stockId);
+    if (stockIndex === -1) {
+      return res.status(404).send({ error: 'Stock object not found' });
+    }
+    // remove the stock object from the array
+    product.stock.splice(stockIndex, 1);
+    // save the updated product
+    await product.save();
+    res.send(product);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send({ error: 'Server error' });
+  }
+}; */
+
+
+
+/* const adminCreateProduct = async (req, res, next) => {
   try {
     const product = new Product();
     const {
@@ -265,9 +291,68 @@ const adminCreateProduct = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+}; */
+
+const adminCreateProduct = async (req, res, next) => {
+  try {
+    const product = new Product();
+    const {
+      name,
+      description,
+      min,
+      max,
+      purchaseprice,
+      slrcurrentbuyingprice,
+      supplier,
+      category,
+      attributesTable,
+      stock,
+    } = req.body;
+
+    product.name = name;
+    product.description = description;
+    product.min = min;
+    product.max = max;
+    product.purchaseprice = purchaseprice;
+    product.slrcurrentbuyingprice = slrcurrentbuyingprice;
+    product.supplier = supplier;
+    product.category = category;
+    if (stock.length > 0) {
+      product.stock = [];
+      stock.map((item) => {
+        const { attrs, count, price, barcode, ctlsku, slrsku, suppliersku } =
+          item;
+        product.stock.push({
+          attrs: attrs || "",
+          count: count || 0,
+          price: price || 0,
+          barcode: barcode || "",
+          ctlsku: ctlsku || "",
+          slrsku: slrsku || "",
+          suppliersku: suppliersku || "",
+        });
+      });
+    } else {
+      product.stock = [];
+    }
+
+    if (attributesTable.length > 0) {
+      attributesTable.map((item) => {
+        product.attrs.push(item);
+      });
+    }
+    await product.save();
+
+    res.json({
+      message: "product created",
+      productId: product._id,
+    });
+  } catch (err) {
+    next(err);
+  }
 };
 
-const adminUpdateProduct = async (req, res, next) => {
+/* const adminUpdateProduct = async (req, res, next) => {
   try {
     const product = await Product.findById(req.params.id).orFail();
     const {
@@ -309,6 +394,62 @@ const adminUpdateProduct = async (req, res, next) => {
       });
     } else {
       product.attrs = [];
+    }
+    await product.save(); 
+    res.json({
+      message: "product updated",
+    });
+  } catch (err) {
+    next(err);
+  }
+}; */
+
+const adminUpdateProduct = async (req, res, next) => {
+  try {
+    const product = await Product.findById(req.params.id).orFail();
+    const {
+      name,
+      description,
+      supplier,
+      RRP,
+      category,
+      images,
+      pdfs,
+      purchaseprice,
+      slrcurrentbuyingprice,
+      min,
+      max,
+      stock,
+    } = req.body;
+    product.name = name || product.name;
+    product.description = description || product.description;
+    product.supplier = supplier || product.supplier;
+    product.RRP = RRP || product.RRP;
+    product.category = category || product.category;
+    product.images = images || product.images;
+    product.pdfs = pdfs || product.pdfs;
+    product.purchaseprice = purchaseprice || product.purchaseprice;
+    product.slrcurrentbuyingprice =
+      slrcurrentbuyingprice || product.slrcurrentbuyingprice;
+    product.min = min || product.min;
+    product.max = max || product.max;
+    if (stock.length > 0) {
+      product.stock = [];
+      stock.map((item) => {
+        const { attrs, count, price, barcode, ctlsku, slrsku, suppliersku } =
+          item;
+        product.stock.push({
+          attrs: attrs || "",
+          count: count || 0,
+          price: price || 0,
+          barcode: barcode || "",
+          ctlsku: ctlsku || "",
+          slrsku: slrsku || "",
+          suppliersku: suppliersku || "",
+        });
+      });
+    } else {
+      product.stock = [];
     }
     await product.save();
     res.json({

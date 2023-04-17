@@ -42,6 +42,8 @@ const AdminEditProductPage = () => {
     }
   };
 
+  
+
   const pdfDeleteHandler = async (pdfPath, productId) => {
     // 在productController的 adminDeleteProductImage 里面 已经decode了url，所以这里要encode
 
