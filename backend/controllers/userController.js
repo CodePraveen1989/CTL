@@ -315,9 +315,9 @@ const loginUser = async (req, res, next) => {
       return res.status(400).send("All inputs are required");
     }
 
-    // Get user's current IP address
-    const ipAddress =
-      req.headers["x-forwarded-for"] || req.connection.remoteAddress;
+    // Get user's current public IP address
+    const ipAddress = req.headers["x-forwarded-for"]?.split(", ")[0] || req.connection.remoteAddress;
+
 
     const user = await User.findOne({ email });
     // compare passwords
@@ -377,7 +377,7 @@ const loginUser = async (req, res, next) => {
             lastName: user.lastName,
             email: user.email,
             isAdmin: user.isAdmin,
-            verified:user.verified,
+            verified: user.verified,
             doNotLogout,
           },
         });
@@ -391,26 +391,26 @@ const loginUser = async (req, res, next) => {
 
 
 const verifyEmail = async (req, res) => {
-	try {
-		const user = await User.findOne({ _id: req.params.id });
-		if (!user) return res.status(400).send({ message: "Invalid link" });
+  try {
+    const user = await User.findOne({ _id: req.params.id });
+    if (!user) return res.status(400).send({ message: "Invalid link" });
 
-    
-		const token = await Token.findOne({
+
+    const token = await Token.findOne({
       userId: user._id,
-			token: req.params.token,
-		});
-		if (!token) return res.status(400).send({ message: "Invalid link" });
-    
-		// await User.updateOne({ _id: user._id, verified: true });
+      token: req.params.token,
+    });
+    if (!token) return res.status(400).send({ message: "Invalid link" });
+
+    // await User.updateOne({ _id: user._id, verified: true });
     await User.updateOne({ _id: user._id }, { verified: true });
 
-		await token.remove();
+    await token.remove();
 
-		res.status(200).send({ message: "Email verified successfully" });
-	} catch (error) {
-		res.status(500).send({ message: "Internal Server Error" });
-	}
+    res.status(200).send({ message: "Email verified successfully" });
+  } catch (error) {
+    res.status(500).send({ message: "Internal Server Error" });
+  }
 }
 
 const updateUserProfile = async (req, res, next) => {
