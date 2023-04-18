@@ -158,6 +158,7 @@ const ProductListPage = ({
         </Col>
         <Col xxl={10} xl={9} lg={9} md={9}>
           <Row className="m-2" xs={1} md={2} lg={3} xl={4} xxl={6}>
+
             {loading ? (
               <img src="./loading-gif.gif"></img>
               // <h1>Loading products ....</h1>
@@ -177,6 +178,7 @@ const ProductListPage = ({
                 />
               ))
             )}
+
           </Row>
           {paginationLinksNumber > 1 ? (
             <PaginationComponent

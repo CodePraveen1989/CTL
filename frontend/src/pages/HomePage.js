@@ -33,7 +33,7 @@ const HomePage = () => {
         <Container >
           <Row xs={2} md={3} lg={4} xl={5} className="g-4">
             <Col>
-              <LinkContainer style={onHover} to="/product-list/category/PPE">
+              <LinkContainer style={onHover} to="/product-list?categoryName=PPE">
                 <div className='box'>
                   <div className="box1">
                     <div className="box2">
@@ -47,7 +47,7 @@ const HomePage = () => {
               </LinkContainer>
             </Col>
             <Col>
-              <LinkContainer style={onHover} to="/product-list/category/HAND TOOLS">
+              <LinkContainer style={onHover} to="/product-list?categoryName=HAND-TOOLS">
                 <div className='box'>
                   <div className="box1">
                     <div className="box2">
@@ -61,7 +61,7 @@ const HomePage = () => {
               </LinkContainer>
             </Col>
             <Col>
-              <LinkContainer style={onHover} to="/product-list/category/ELECTRICAL">
+              <LinkContainer style={onHover} to="/product-list?categoryName=ELECTRICAL">
                 <div className='box'>
                   <div className="box1">
                     <div className="box2">
@@ -75,7 +75,7 @@ const HomePage = () => {
               </LinkContainer>
             </Col>
             <Col>
-              <LinkContainer style={onHover} to="/product-list/category/ACCESSORIES">
+              <LinkContainer style={onHover} to="/product-list?categoryName=SITE-SAFETY&subCategoryName=ACCESSORIES">
                 <div className='box'>
                   <div className="box1">
                     <div className="box2">

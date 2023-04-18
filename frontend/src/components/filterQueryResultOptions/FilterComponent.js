@@ -15,10 +15,10 @@ const FilterComponent = () => {
     />
   );
 
-/*   var nav_color = {
-    2: "subCat",
-    3: "childCat",
-  }; */
+  /*   var nav_color = {
+      2: "subCat",
+      3: "childCat",
+    }; */
 
   var PPE1 = "/product-list?categoryName=PPE";
   var PPE2 = [
@@ -170,129 +170,62 @@ const FilterComponent = () => {
       type: 2,
       link: HAND_TOOLS + "&subCategoryName=FASTENING",
     },
-    { label: "PLIERS", type: 2, link: HAND_TOOLS + "&subCategoryName=PLIERS" },
-  ];
-
-  var POWER_TOOLS = "/product-list?categoryName=POWER-TOOLS";
-  var PT2 = [
     {
-      label: "POWER PACKS",
+      label: "PLIERS",
       type: 2,
-      link: POWER_TOOLS + "&subCategoryName=POWER-PACKS",
-    },
-    { label: "DRILLS", type: 2, link: POWER_TOOLS + "&subCategoryName=DRILLS" },
-    {
-      label: "IMPACTS & FASTENING",
-      type: 2,
-      link: POWER_TOOLS + "&subCategoryName=IMPACTS-FASTENING",
+      link: HAND_TOOLS + "&subCategoryName=PLIERS"
     },
     {
-      label: "METAL WORKING",
+      label: "KNIVES",
       type: 2,
-      link: POWER_TOOLS + "&subCategoryName=METAL-WORKING",
-    },
-    {
-      label: "JOBSITE CLEAN UP",
-      type: 2,
-      link: POWER_TOOLS + "&subCategoryName=JOBSITE-CLEAN-UP",
-    },
-    {
-      label: "LIGHTING",
-      type: 2,
-      link: POWER_TOOLS + "&subCategoryName=LIGHTING",
-    },
-    {
-      label: "JOBSITE AUDIO",
-      type: 2,
-      link: POWER_TOOLS + "&subCategoryName=JOBSITE-AUDIO",
-    },
-    {
-      label: "ELECTRICAL",
-      type: 2,
-      link: POWER_TOOLS + "&subCategoryName=ELECTRICAL",
-    },
-    {
-      label: "TEST & MEASURE",
-      type: 2,
-      link: POWER_TOOLS + "&subCategoryName=TEST-MEASURE",
-    },
-    { label: "LASERS", type: 2, link: POWER_TOOLS + "&subCategoryName=LASERS" },
-    {
-      label: "SPECIALITY TOOLS",
-      type: 2,
-      link: POWER_TOOLS + "&subCategoryName=SPECIALITY TOOLS",
-    },
-    {
-      label: "BATTERIES & CHARGERS",
-      type: 2,
-      link: POWER_TOOLS + "&subCategoryName=BATTERIES-CHARGERS",
+      link: HAND_TOOLS + "&subCategoryName=KNIVES"
     },
   ];
 
-  var ELECTRICAL1 ="/product-list?categoryName=ELECTRICAL";
-  var ELECTRICAL2	= [			
-  { label:"CABLES", type: 2 , link: ELECTRICAL1 + "&subCategoryName=CABLES"},
-  { label:"ENCLOSURES", type: 2 , link: ELECTRICAL1 + "&subCategoryName=ENCLOSURES"},
-  ];			
-
-  var ACCESSORIES1 = "/product-list?categoryName=ACCESSORIES";
-  var ACCESSORIES2 = [
+  var INDUSTRIAL = "/product-list?categoryName=INDUSTRIAL";
+  var IND2 = [
     {
-      label: "FIBRE DISCS",
+      label: "ABRASIVES & CUTTING",
       type: 2,
-      link: ACCESSORIES1 + "&subCategoryName=FIBRE-DISCS",
+      link: INDUSTRIAL + "&subCategoryName=ABRASIVES-CUTTING",
     },
     {
       label: "DRILLING",
       type: 2,
-      link: ACCESSORIES1 + "&subCategoryName=DRILLING",
+      link: INDUSTRIAL + "&subCategoryName=DRILLING",
     },
     {
-      label: "SDS DRILL BITS FOR MASONRY",
+      label: "LUBRICATION & EQUIPMENT",
       type: 2,
-      link: ACCESSORIES1 + "&subCategoryName=SDS-DRILL-BITS-FOR-MASONRY",
+      link: INDUSTRIAL + "&subCategoryName=LUBRICATION-EQUIPMENT",
     },
     {
-      label: "LINISHING BELTS & DISCS",
+      label: "PAINT,EQUIPMENT & SUPPLIES",
       type: 2,
-      link: ACCESSORIES1 + "&subCategoryName=LINISHING-BELTS-DISCS",
+      link: INDUSTRIAL + "&subCategoryName=PAINT-EQUIPMENT-SUPPLIES",
     },
     {
-      label: "GRINDING WHEELS",
+      label: "PUMPS,VALVES & PARTS",
       type: 2,
-      link: ACCESSORIES1 + "&subCategoryName=GRINDING-WHEELS",
+      link: INDUSTRIAL + "&subCategoryName=PUMPS-VALVES-PARTS",
     },
     {
-      label: "MULTI TOOL BLADES",
+      label: "HOSES & FITTINGS",
       type: 2,
-      link: ACCESSORIES1 + "&subCategoryName=MULTI-TOOL-BLADES",
-    },
-    {
-      label: "FLAP WHEELS",
-      type: 2,
-      link: ACCESSORIES1 + "&subCategoryName=FLAP-WHEELS",
-    },
-    {
-      label: "CUTTING DISCS",
-      type: 2,
-      link: ACCESSORIES1 + "&subCategoryName=CUTTING-DISCS",
-    },
-    {
-      label: "CUTTING BLADES",
-      type: 2,
-      link: ACCESSORIES1 + "&subCategoryName=CUTTING-BLADES",
-    },
-    {
-      label: "HOLE SAWS",
-      type: 2,
-      link: ACCESSORIES1 + "&subCategoryName=HOLE-SAWS",
-    },
-    {
-      label: "CONCRETE DRILLINGS",
-      type: 2,
-      link: ACCESSORIES1 + "&subCategoryName=CONCRETE-DRILLINGS",
+      link: INDUSTRIAL + "&subCategoryName=HOSES-FITTINGS",
     },
   ];
+
+  var CHEMICALS = "/product-list?categoryName=ELECTRICAL";
+
+
+  var ELECTRICAL1 = "/product-list?categoryName=ELECTRICAL";
+  var ELECTRICAL2 = [
+    { label: "CABLES", type: 2, link: ELECTRICAL1 + "&subCategoryName=CABLES" },
+    { label: "ENCLOSURES", type: 2, link: ELECTRICAL1 + "&subCategoryName=ENCLOSURES" },
+  ];
+
+
 
   var testaaa = ELECTRICAL1 + "&subCategoryName=ABCDEFG";
   console.log("testaaaa", testaaa.slice(54));
@@ -455,7 +388,7 @@ const FilterComponent = () => {
         </div>
       </div>
 
-      {/* POWER TOOLS */}
+      {/* INDUSTRIAL */}
       <div className="accordion">
         <div className="accordion-header">
           <a
@@ -463,18 +396,18 @@ const FilterComponent = () => {
             data-bs-toggle="collapse"
             href="#collapseThree"
           >
-            POWER TOOLS
+            INDUSTRIAL
           </a>
         </div>
         <div
           id="collapseThree"
           className={
-            query.categoryName === "POWER-TOOLS" ? "collapse show" : "collapse"
+            query.categoryName === "INDUSTRIAL" ? "collapse show" : "collapse"
           }
           data-bs-parent="#accordion"
         >
           <div className="accordion-body">
-            {PT2.map((item) => {
+            {IND2.map((item) => {
               return (
                 <li
                   key={item.link}
@@ -490,6 +423,44 @@ const FilterComponent = () => {
               );
             })}
           </div>
+        </div>
+      </div>
+
+      {/* CHEMICALS */}
+      <div className="accordion">
+        <div className="accordion-header">
+          <a
+            className="collapsed btn"
+            data-bs-toggle="collapse"
+            href="#collapseEight"
+          >
+            CHEMICALS
+          </a>
+        </div>
+        <div
+          id="collapseEight"
+          className={
+            query.categoryName === "CHEMICALS" ? "collapse show" : "collapse"
+          }
+          data-bs-parent="#accordion"
+        >
+          {/* <div className="accordion-body">
+            {CHEMICALS2.map((item) => {
+              return (
+                <li
+                  key={item.link}
+                  className={
+                    query.subCategoryName === item.link.slice(54)
+                      ? "activeLabel subCatFilter"
+                      : "subCatFilter"
+                  }
+                >
+                  <a href={item.link}>{item.label}</a>
+                  <ColoredLine />
+                </li>
+              );
+            })}
+          </div> */}
         </div>
       </div>
 
@@ -531,104 +502,8 @@ const FilterComponent = () => {
         </div>
       </div>
 
-      {/* MECHANICAL */}
-      <div className="accordion">
-        <div className="accordion-header">
-          <a
-            className="collapsed btn"
-            data-bs-toggle="collapse"
-            href="#collapseSix"
-          >
-            MECHANICAL
-          </a>
-        </div>
-        <div
-          id="collapseSix"
-          className={
-            query.categoryName === "MECHANICAL" ? "collapse show" : "collapse"
-          }
-          data-bs-parent="#accordion"
-        >
-          <div className="accordion-body">
-            {ACCESSORIES2.map((item) => {
-              return (
-                <li
-                  key={item.link}
-                  className={
-                    query.subCategoryName === item.link.slice(55)
-                      ? "activeLabel subCatFilter"
-                      : "subCatFilter"
-                  }
-                >
-                  <a href={item.link}>{item.label}</a>
-                  <ColoredLine />
-                </li>
-              );
-            })}
-          </div>
-        </div>
-      </div>
 
-      {/* ACCESSORIES */}
-      <div className="accordion">
-        <div className="accordion-header">
-          <a
-            className="collapsed btn"
-            data-bs-toggle="collapse"
-            href="#collapseFour"
-          >
-            ACCESSORIES
-          </a>
-        </div>
-        <div
-          id="collapseFour"
-          className={
-            query.categoryName === "ACCESSORIES" ? "collapse show" : "collapse"
-          }
-          data-bs-parent="#accordion"
-        >
-          <div className="accordion-body">
-            {ACCESSORIES2.map((item) => {
-              return (
-                <li
-                  key={item.link}
-                  className={
-                    query.subCategoryName === item.link.slice(55)
-                      ? "activeLabel subCatFilter"
-                      : "subCatFilter"
-                  }
-                >
-                  <a href={item.link}>{item.label}</a>
-                  <ColoredLine />
-                </li>
-              );
-            })}
-          </div>
-        </div>
-      </div>
 
-      {/*       <div className="accordion">
-        <div className="accordion-header">
-          <a className="collapsed btn" data-bs-toggle="collapse" href="#collapseEight">
-            HYDRATION
-          </a>
-        </div>
-        <div id="collapseEight" className="collapse" data-bs-parent="#accordion">
-          <div className="accordion-body">
-          <Form>
-              {Array.from({ length: 5 }).map((_, idx) => (
-                <div className="categories" key={idx}>
-                  <a href="/product-list/category/ACCESSORIES" className="accordion_categories" type="checkbox" id={`check-api2-${idx}`}>
-                    <Form.Check.Label style={{ cursor: "pointer" }}>
-                      Category-{idx}
-                    </Form.Check.Label>
-                  </a>
-                </div>
-              ))}
-            </Form>
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 };

@@ -19,24 +19,24 @@ const LoginPageComponent = ({ loginUserApiRequest, reduxDispatch, setReduxUserSt
     event.preventDefault();
     event.stopPropagation();
     const form = event.currentTarget.elements;
-  
+
     const email = form.email.value;
     const password = form.password.value;
     const doNotLogout = form.doNotLogout.checked;
-  
+
     if (event.currentTarget.checkValidity() === true && email && password) {
-        setLoginUserResponseState({ loading: true });
+      setLoginUserResponseState({ loading: true });
       loginUserApiRequest(email, password, doNotLogout, ipAddress)
         .then((res) => {
-            setLoginUserResponseState({ success: res.success, loading: false, error: "" });
-  
-            if (res.userLoggedIn) {
-                reduxDispatch(setReduxUserState(res.userLoggedIn));
-            }
-  
-            if (res.success === "user logged in" && !res.userLoggedIn.isAdmin) window.location.assign('/user/my-orders') 
-            else window.location.assign('/admin/orders')
-  
+          setLoginUserResponseState({ success: res.success, loading: false, error: "" });
+
+          if (res.userLoggedIn) {
+            reduxDispatch(setReduxUserState(res.userLoggedIn));
+          }
+
+          if (res.success === "user logged in" && !res.userLoggedIn.isAdmin) window.location.assign('/')
+          else window.location.assign('/admin/orders')
+
         })
         .catch((er) => {
           const errorMessage = er.response.data.message || er.response.data;
@@ -44,23 +44,23 @@ const LoginPageComponent = ({ loginUserApiRequest, reduxDispatch, setReduxUserSt
           setErrorMessage(errorMessage);
         });
     }
-  
+
     setValidated(true);
-  
+
     event.preventDefault();
-  
+
     if (email.endsWith('@slrltd.com')) {
-        fetch('https://api.ipify.org?format=json')
-          .then(response => response.json())
-          .then(data => setIpAddress(data.ip))
+      fetch('https://api.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => setIpAddress(data.ip))
     } else {
       setErrorMessage('You are not authorized to login!');
     }
   };
-  
 
 
-  
+
+
   return (
     <Container>
       <Row className="mt-5 justify-content-md-center">
@@ -73,8 +73,8 @@ const LoginPageComponent = ({ loginUserApiRequest, reduxDispatch, setReduxUserSt
                 required
                 type="email"
                 placeholder="Enter email"
-                // pattern=".+@(slrltd.com|admin.com)"
-                // TODO 解锁上面
+              // pattern=".+@(slrltd.com|admin.com)"
+              // TODO 解锁上面
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -96,7 +96,7 @@ const LoginPageComponent = ({ loginUserApiRequest, reduxDispatch, setReduxUserSt
 
             <Button className="mb-3" variant="primary" type="submit">
               {loginUserResponseState &&
-              loginUserResponseState.loading === true ? (
+                loginUserResponseState.loading === true ? (
                 <Spinner
                   as="span"
                   animation="border"
